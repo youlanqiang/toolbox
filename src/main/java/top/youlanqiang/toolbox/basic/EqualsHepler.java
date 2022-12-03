@@ -1,24 +1,24 @@
 package top.youlanqiang.toolbox.basic;
 
-
+/**
+ * @author youlanqiang
+ * created in 2022/12/03 09:56
+ * 对象比较器
+ * 用于比较属性是否相同,可以添加多个比较条件然后返回一个比较结果。
+ */
 public class EqualsHepler {
 
-    private Object source;
-
-    private Object target;
 
     private boolean equalsValue = true;
 
 
-    public EqualsHepler(Object source, Object target){
-        if(source == null){
-            throw new IllegalArgumentException("source object is null");
-        }
-        this.source = source;
-        this.target = target;
-    }
-
-    public EqualsHepler addEqualExp(Object v1, Object v2){
+    /**
+     * 添加比较条件值
+     * @param v1 值
+     * @param v2 被比较值
+     * @return
+     */
+    public EqualsHepler addCondition(Object v1, Object v2){
         if(!equalsValue){
             return this;
         }
@@ -26,13 +26,11 @@ public class EqualsHepler {
         return this;
     }
 
+    /**
+     * 返回比较结果
+     * @return true or false
+     */
     public boolean doEquals(){
-        if(source == target){
-            return true;
-        }
-        if(target == null || source.getClass() != target.getClass()){
-            return false;
-        }
         return equalsValue;
     }
 
