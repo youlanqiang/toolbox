@@ -36,8 +36,18 @@ public final class Toolbox {
      * 快速打印格式化字符串内容
      * @param str 打印内容
      */
-    public static void format(String pattern, Object... arg){
-        println(ToStringHepler.format(pattern, arg));
+    public static void println(String pattern, Object... args){
+        System.out.println(format(pattern, args));
+    }
+
+    /**
+	 * 使用默认的占位符 {} 格式化字符串内容
+	 * @param pattern 字符串模版
+	 * @param args 参数列表
+	 * @return 格式化后的格式化字符串
+	 */
+    public static String format(String pattern, Object... arg){
+        return ToStringHepler.format(pattern, arg);
     }
 
     /**
@@ -46,17 +56,16 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(String str){
-        if(str == null || str.length() == 0){
-            return true;
-        }
-        return false;
+        return str == null || str.length() == 0;
     }
 
+    /**
+     * 数组是否为空
+     * @param objects 数组
+     * @return true or false
+     */
     public static boolean isEmpty(Object... objects){
-        if(objects == null || objects.length == 0){
-            return true;
-        }
-        return false;
+        return objects == null || objects.length == 0;
     }
 
     /**
@@ -65,10 +74,7 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(Map<Object, Object> map){
-        if(map == null || map.size() == 0){
-            return true;
-        }
-        return false;
+        return map == null || map.size() == 0;
     }
 
     /**
@@ -77,10 +83,7 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(Collection<Object> collection){
-        if(collection == null || collection.size() == 0){
-            return true;
-        }
-        return false;
+        return collection == null || collection.size() == 0;
     }
     
 }
