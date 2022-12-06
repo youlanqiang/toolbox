@@ -6,7 +6,7 @@ package top.youlanqiang.toolbox.basic;
  * 对象比较器
  * 用于比较属性是否相同,可以添加多个比较条件然后返回一个比较结果。
  */
-public class EqualsHepler {
+public final class EqualsHepler {
 
 
     private boolean equalsValue = true;

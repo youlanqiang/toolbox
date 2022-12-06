@@ -3,6 +3,8 @@ package top.youlanqiang.toolbox.basic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import top.youlanqiang.toolbox.Toolbox;
@@ -28,11 +30,12 @@ public class ToStringHeplerTest {
         assertEquals("This is one 1 false", str);
     }
 
+
     @DisplayName("测试转移字符format")
     @Test
     public void testDelim() {
         var str = Toolbox.format("This is \\{} {}", "one");
-        assertEquals("This is {} one", str);
+        assertEquals("This is {} one", str);   
     }
 
 }
