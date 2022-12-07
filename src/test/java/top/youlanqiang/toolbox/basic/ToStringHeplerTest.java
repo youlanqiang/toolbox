@@ -30,12 +30,28 @@ public class ToStringHeplerTest {
         assertEquals("This is one 1 false", str);
     }
 
-
     @DisplayName("测试转移字符format")
     @Test
     public void testDelim() {
         var str = Toolbox.format("This is \\{} {}", "one");
-        assertEquals("This is {} one", str);   
+        assertEquals("This is {} one", str);
+    }
+
+    /**
+     * 测试用实体类
+     */
+    public record SampleUser(String name, Integer age) {
+    }
+
+    @DisplayName("测试ObjectToStringBuilder")
+    @Test
+    public void testObjectToString() {
+        var sample = new SampleUser("测试", 15);
+        var str = Toolbox.toString(sample)
+                .put("name", sample.name())
+                .put("age", sample.age())
+                .toString();
+        System.out.println(str);
     }
 
 }

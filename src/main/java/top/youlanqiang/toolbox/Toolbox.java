@@ -59,6 +59,39 @@ public final class Toolbox {
     }
 
     /**
+     * 创建内部类ObjectToStringBuilder，传入class的类名
+     * {@link ToStringHepler#build}
+     * 
+     * @param obj
+     * @return
+     */
+    public static ToStringHepler.ObjectToStringBuilder toString(Object obj) {
+        return ToStringHepler.build(obj);
+    }
+
+    /**
+     * 创建内部类ObjectToStringBuilder，传入类型名称
+     * {@link ToStringHepler#build}
+     * 
+     * @param className 类型的名称
+     * @return
+     */
+    public static ToStringHepler.ObjectToStringBuilder toString(String className) {
+        return ToStringHepler.build(className);
+    }
+
+    /**
+     * 创建内部类ObjectToStringBuilder，传入class的类名
+     * {@link ToStringHepler#build}
+     * 
+     * @param clazz 类型
+     * @return
+     */
+    public static ToStringHepler.ObjectToStringBuilder toString(Class<?> clazz) {
+        return ToStringHepler.build(clazz);
+    }
+
+    /**
      * 判断对象是否为null，或空
      * 
      * @param obj 对象

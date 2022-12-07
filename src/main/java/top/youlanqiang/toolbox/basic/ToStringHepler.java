@@ -1,6 +1,11 @@
 package top.youlanqiang.toolbox.basic;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map.Entry;
+
 import top.youlanqiang.toolbox.Toolbox;
+import top.youlanqiang.toolbox.collection.Pair;
 
 /**
  * @author youlanqiang
@@ -121,15 +126,33 @@ public final class ToStringHepler {
 	 */
 	public static final class ObjectToStringBuilder {
 
-		final String className;
+		private final String className;
+
+		private final List<Entry<String, Object>> fieldEntries;
 
 		public ObjectToStringBuilder(String className) {
 			this.className = className;
+			this.fieldEntries = new LinkedList<>();
+		}
+
+		public ObjectToStringBuilder put(String key, Object value) {
+			this.fieldEntries.add(Pair.of(key, value));
+			return this;
 		}
 
 		public String toString() {
 			StringBuffer buffer = new StringBuffer();
-			return "";
+			buffer.append(className).append("{");
+			fieldEntries.forEach(entry -> {
+				buffer
+						.append(entry.getKey())
+						.append("=")
+						.append(String.valueOf(entry.getValue()))
+						.append(",");
+			});
+			// 删除掉最后一位逗号
+			buffer.deleteCharAt(buffer.length() - 1);
+			return buffer.append("}").toString();
 		}
 
 	}
