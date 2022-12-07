@@ -1,21 +1,22 @@
 package top.youlanqiang.toolbox.collection;
 
+import top.youlanqiang.toolbox.Toolbox;
+
 /**
  * @author youlanqiang
- * created in 2022/10/14 22:34
- * Triple提供返回3个元素组成的对象
+ *         created in 2022/10/14 22:34
+ *         Triple提供返回3个元素组成的对象
  */
 public abstract class Triple<L, M, R> implements Comparable<Triple<L, M, R>> {
 
-    private Triple(){};
-
+    private Triple() {
+    };
 
     public abstract L getLeft();
 
     public abstract M getMiddle();
 
     public abstract R getRight();
-
 
     public abstract Triple<L, M, R> setLeft(L left);
 
@@ -24,17 +25,22 @@ public abstract class Triple<L, M, R> implements Comparable<Triple<L, M, R>> {
     public abstract Triple<L, M, R> setRight(R right);
 
     @Override
-    public String toString(){
-        return "("+getLeft()+","+getMiddle()+","+getRight()+")";
+    public String toString() {
+        return Toolbox.toString(this)
+                .put("left", getLeft())
+                .put("middle", getMiddle())
+                .put("right", getRight())
+                .toString();
     }
 
     /**
      * 不可变Triple对象
+     * 
      * @param <L> 左值
      * @param <M> 中值
      * @param <R> 右值
      */
-    private static class ImmutableTriple<L, M, R> extends Triple<L, M, R>{
+    private static class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
 
         @Override
         public L getLeft() {

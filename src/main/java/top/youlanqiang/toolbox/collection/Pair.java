@@ -2,6 +2,8 @@ package top.youlanqiang.toolbox.collection;
 
 import java.util.Map.Entry;
 
+import top.youlanqiang.toolbox.Toolbox;
+
 /**
  * @author youlanqiang
  *         created in 2022/10/14 22:18
@@ -73,7 +75,10 @@ public abstract class Pair<L, R> implements Entry<L, R>, Comparable<Pair<L, R>> 
 
     @Override
     public String toString() {
-        return "(" + getLeft() + "," + getRight() + ")";
+        return Toolbox.toString(this)
+                .put("left", getLeft())
+                .put("right", getRight())
+                .toString();
     }
 
     /**
