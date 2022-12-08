@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import top.youlanqiang.toolbox.basic.EqualsHepler;
 import top.youlanqiang.toolbox.basic.ObjectHepler;
 import top.youlanqiang.toolbox.basic.ToStringHepler;
+import top.youlanqiang.toolbox.collection.Pair;
 
 /**
  * @author youlanqiang
@@ -17,6 +18,25 @@ import top.youlanqiang.toolbox.basic.ToStringHepler;
 public final class Toolbox {
 
     private Toolbox() {
+    }
+
+    /**
+     * @see Pair
+     * 
+     * @param left  左值
+     * @param right 右值
+     * @return 不可变Pair对象
+     */
+    public static <L, R> Pair<L, R> ofPair(L left, R right) {
+        return Pair.of(left, right);
+    }
+
+    public static <L, R> Pair<L, R> buildPair() {
+        return Pair.build();
+    }
+
+    public static <L, R> Pair<L, R> buildPair(L left, R right) {
+        return Pair.build(left, right);
     }
 
     /**

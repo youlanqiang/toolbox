@@ -12,6 +12,10 @@ public abstract class Triple<L, M, R> implements Comparable<Triple<L, M, R>> {
     private Triple() {
     };
 
+    public static <L, M, R> Triple<L, M, R> of(L left, M middle, R right) {
+        return new ImmutableTriple<>(left, middle, right);
+    }
+
     public abstract L getLeft();
 
     public abstract M getMiddle();
@@ -42,34 +46,46 @@ public abstract class Triple<L, M, R> implements Comparable<Triple<L, M, R>> {
      */
     private static class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
 
+        private final L left;
+
+        private final M middle;
+
+        private final R right;
+
+        public ImmutableTriple(L left, M middle, R right) {
+            this.left = left;
+            this.middle = middle;
+            this.right = right;
+        }
+
         @Override
         public L getLeft() {
-            return null;
+            return this.left;
         }
 
         @Override
         public M getMiddle() {
-            return null;
+            return this.middle;
         }
 
         @Override
         public R getRight() {
-            return null;
+            return this.right;
         }
 
         @Override
         public Triple<L, M, R> setLeft(L left) {
-            return null;
+            throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
         @Override
         public Triple<L, M, R> setMiddle(M middle) {
-            return null;
+            throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
         @Override
         public Triple<L, M, R> setRight(R right) {
-            return null;
+            throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
         @Override

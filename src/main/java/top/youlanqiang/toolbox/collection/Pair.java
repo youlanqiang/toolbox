@@ -110,12 +110,12 @@ public abstract class Pair<L, R> implements Entry<L, R>, Comparable<Pair<L, R>> 
 
         @Override
         public Pair<L, R> setLeft(L left) {
-            throw new IllegalArgumentException("this is a immutable object.");
+            throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
         @Override
         public Pair<L, R> setRight(R right) {
-            throw new IllegalArgumentException("this is a immutable object.");
+            throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
         @Override
