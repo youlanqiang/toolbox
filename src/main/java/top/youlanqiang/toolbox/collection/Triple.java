@@ -7,13 +7,17 @@ import top.youlanqiang.toolbox.Toolbox;
  *         created in 2022/10/14 22:34
  *         Triple提供返回3个元素组成的对象
  */
-public abstract class Triple<L, M, R> implements Comparable<Triple<L, M, R>> {
+public abstract class Triple<L, M, R> {
 
     private Triple() {
     };
 
     public static <L, M, R> Triple<L, M, R> of(L left, M middle, R right) {
         return new ImmutableTriple<>(left, middle, right);
+    }
+
+    public static <L, M, R> Triple<L, M, R> build() {
+        return new MutableTriple<>();
     }
 
     public abstract L getLeft();
@@ -88,9 +92,51 @@ public abstract class Triple<L, M, R> implements Comparable<Triple<L, M, R>> {
             throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
+    }
+
+    /**
+     * 可变Triple对象
+     */
+    private static class MutableTriple<L, M, R> extends Triple<L, M, R> {
+
+        private L left;
+
+        private M middle;
+
+        private R right;
+
         @Override
-        public int compareTo(Triple<L, M, R> o) {
-            return 0;
+        public L getLeft() {
+            return this.left;
         }
+
+        @Override
+        public M getMiddle() {
+            return this.middle;
+        }
+
+        @Override
+        public R getRight() {
+            return this.right;
+        }
+
+        @Override
+        public Triple<L, M, R> setLeft(L left) {
+            this.left = left;
+            return this;
+        }
+
+        @Override
+        public Triple<L, M, R> setMiddle(M middle) {
+            this.middle = middle;
+            return this;
+        }
+
+        @Override
+        public Triple<L, M, R> setRight(R right) {
+            this.right = right;
+            return this;
+        }
+
     }
 }

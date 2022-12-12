@@ -9,6 +9,7 @@ import top.youlanqiang.toolbox.basic.EqualsHepler;
 import top.youlanqiang.toolbox.basic.ObjectHepler;
 import top.youlanqiang.toolbox.basic.ToStringHepler;
 import top.youlanqiang.toolbox.collection.Pair;
+import top.youlanqiang.toolbox.collection.Triple;
 
 /**
  * @author youlanqiang
@@ -18,6 +19,22 @@ import top.youlanqiang.toolbox.collection.Pair;
 public final class Toolbox {
 
     private Toolbox() {
+    }
+
+    public static <L, M, R> Triple<L, M, R> ofTriple(L left, M middle, R right) {
+        return Triple.of(left, middle, right);
+    }
+
+    /**
+     * @see Triple
+     *
+     * @param left   左值
+     * @param middle 中值
+     * @param right  右值
+     * @return 不可变Pair对象
+     */
+    public static <L, M, R> Triple<L, M, R> buildTriple() {
+        return Triple.build();
     }
 
     /**

@@ -9,7 +9,7 @@ import top.youlanqiang.toolbox.Toolbox;
  *         created in 2022/10/14 22:18
  *         Pair提供返回2个元素组成的对象
  */
-public abstract class Pair<L, R> implements Entry<L, R>, Comparable<Pair<L, R>> {
+public abstract class Pair<L, R> implements Entry<L, R> {
 
     private Pair() {
     };
@@ -118,11 +118,6 @@ public abstract class Pair<L, R> implements Entry<L, R>, Comparable<Pair<L, R>> 
             throw new IllegalArgumentException(PACKAGE_CONST.IMMUTABLE_ERROR);
         }
 
-        @Override
-        public int compareTo(Pair<L, R> o) {
-            return 0;
-        }
-
     }
 
     /**
@@ -165,11 +160,6 @@ public abstract class Pair<L, R> implements Entry<L, R>, Comparable<Pair<L, R>> 
         public Pair<L, R> setRight(R right) {
             this.rightValue = right;
             return this;
-        }
-
-        @Override
-        public int compareTo(Pair<L, R> o) {
-            return 0;
         }
 
     }
