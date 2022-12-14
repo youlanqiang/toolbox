@@ -2,6 +2,8 @@ package top.youlanqiang.toolbox.basic;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Map.Entry;
 
 import top.youlanqiang.toolbox.Toolbox;
@@ -155,6 +157,28 @@ public final class ToStringHepler {
 			return buffer.append("}").toString();
 		}
 
+	}
+
+	/**
+	 * 将map转换为字符串
+	 * 
+	 * @param map               map对象
+	 * @param separator         entry分割符号
+	 * @param keyValueSeparator kv分割符号
+	 * @return string
+	 */
+	public static String mapToString(Map<?, ?> map, String separator, String keyValueSeparator) {
+		StringBuffer buffer = new StringBuffer();
+		map.forEach((k, v) -> {
+			buffer
+					.append(Objects.toString(k))
+					.append(keyValueSeparator)
+					.append(Objects.toString(v))
+					.append(separator);
+		});
+		// 删除掉最后一位逗号
+		buffer.deleteCharAt(buffer.length() - 1);
+		return buffer.toString();
 	}
 
 }

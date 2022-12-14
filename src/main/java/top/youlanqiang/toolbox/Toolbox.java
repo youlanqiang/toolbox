@@ -21,6 +21,14 @@ public final class Toolbox {
     private Toolbox() {
     }
 
+    /**
+     * @see Triple
+     *
+     * @param left   左值
+     * @param middle 中值
+     * @param right  右值
+     * @return 不可变Triple对象
+     */
     public static <L, M, R> Triple<L, M, R> ofTriple(L left, M middle, R right) {
         return Triple.of(left, middle, right);
     }
@@ -28,10 +36,7 @@ public final class Toolbox {
     /**
      * @see Triple
      *
-     * @param left   左值
-     * @param middle 中值
-     * @param right  右值
-     * @return 不可变Pair对象
+     * @return 可变Triple对象
      */
     public static <L, M, R> Triple<L, M, R> buildTriple() {
         return Triple.build();
@@ -48,6 +53,11 @@ public final class Toolbox {
         return Pair.of(left, right);
     }
 
+    /**
+     * @see Pair
+     * 
+     * @return 可变Pair对象
+     */
     public static <L, R> Pair<L, R> buildPair() {
         return Pair.build();
     }
@@ -115,6 +125,18 @@ public final class Toolbox {
      */
     public static ToStringHepler.ObjectToStringBuilder toString(String className) {
         return ToStringHepler.build(className);
+    }
+
+    /**
+     * 将map转换为字符串
+     * 
+     * @param map               map对象
+     * @param separator         entry分割符号
+     * @param keyValueSeparator kv分割符号
+     * @return string
+     */
+    public static String toString(Map<?, ?> map, String separator, String keyValueSeparator) {
+        return ToStringHepler.mapToString(map, separator, keyValueSeparator);
     }
 
     /**
