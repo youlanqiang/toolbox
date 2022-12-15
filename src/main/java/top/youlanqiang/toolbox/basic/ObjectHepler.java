@@ -48,4 +48,25 @@ public final class ObjectHepler {
         return false;
     }
 
+    /**
+     * 复制source中的属性对象至target对象
+     * 
+     * @param source 源对象
+     * @param target 目标对象
+     */
+    public static void copyProperties(Object source, Object target) {
+        // todo
+    }
+
+    /**
+     * 深拷贝一个对象
+     * 
+     * @param <T>
+     * @param source 源对象
+     * @return 深拷贝后新对象
+     */
+    public static <T> T copy(T source) {
+        return null;
+    }
+
 }

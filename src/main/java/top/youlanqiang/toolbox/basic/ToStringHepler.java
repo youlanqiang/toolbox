@@ -1,5 +1,6 @@
 package top.youlanqiang.toolbox.basic;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -168,17 +169,31 @@ public final class ToStringHepler {
 	 * @return string
 	 */
 	public static String mapToString(Map<?, ?> map, String separator, String keyValueSeparator) {
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder builder = new StringBuilder();
 		map.forEach((k, v) -> {
-			buffer
+			builder
 					.append(Objects.toString(k))
 					.append(keyValueSeparator)
 					.append(Objects.toString(v))
 					.append(separator);
 		});
 		// 删除掉最后一位逗号
-		buffer.deleteCharAt(buffer.length() - 1);
-		return buffer.toString();
+		builder.deleteCharAt(builder.length() - 1);
+		return builder.toString();
+	}
+
+	public static String listToString(Collection<?> list, String open, String close, String separator) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(open);
+		list.forEach((item) -> {
+			builder
+					.append(item)
+					.append(separator);
+		});
+		// 删除掉最后一位逗号
+		builder.deleteCharAt(builder.length() - 1);
+		builder.append(close);
+		return builder.toString();
 	}
 
 }
