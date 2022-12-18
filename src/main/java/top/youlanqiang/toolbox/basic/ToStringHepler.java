@@ -41,7 +41,7 @@ public final class ToStringHepler {
 	 * 
 	 * @param pattern 字符串模版
 	 * @param holder  占位符标签
-	 * @param arg     参数列表
+	 * @param args    参数列表
 	 * @return 格式化后的格式化字符串
 	 */
 	public static String format(String pattern, String holder, Object... args) {

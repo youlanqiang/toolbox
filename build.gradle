@@ -1,6 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+    id 'signing'
 }
+
+apply from: rootDir.canonicalPath + '/.gradle/publish.gradle'
 
 group 'top.youlanqiang'
 version '1.1-SNAPSHOT'
@@ -19,3 +23,81 @@ test {
     useJUnitPlatform()
 }
 
+tasks.withType(JavaCompile) {  
+    options.encoding = "UTF-8"  
+}
+
+task sourcesJar(type: Jar){
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar){
+    from javadoc
+    classifier = 'javadoc'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication){
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                // 构件名称
+                // 区别于artifactId，可以理解为artifactName
+                name = 'toolbox'
+                // 构件描述
+                description = 'Toolbox Common library'
+                // 构件主页
+                url = 'https://github.com/youlanqiang/toolbox'
+                // 许可证名称和地址
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://mit-license.org/'
+                    }
+                }
+                // 开发者信息
+                developers {
+                    developer {
+                        name = 'youlanqiang'
+                        email = 'youlanqiang@hotmail.com'
+                    }
+                }
+                // 版本控制仓库地址
+                scm {
+                    url = 'https://github.com/youlanqiang/toolbox'
+                    connection = 'scm:git:git://github.com/youlanqiang/toolbox.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:youlanqiang/toolbox.git'
+                }
+            }
+        }
+    }
+
+        // 定义发布到哪里
+    repositories {
+        maven {
+            credentials {
+                // 这里就是之前在issues.sonatype.org注册的账号
+                username sonatypeUsername
+                password sonatypePassword
+            }
+            // SNAPSHOT上传至快照服务器，正式版上传至中央服务器
+            def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+            url = project.version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+
+}
+
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
+}

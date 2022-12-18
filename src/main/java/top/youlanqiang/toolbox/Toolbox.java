@@ -69,7 +69,6 @@ public final class Toolbox {
     /**
      * 创建一个比较器
      * 
-     * @see top.youlanqiang.toolbox.basic.EqualseHepler
      * @return
      */
     public static EqualsHepler equalsHepler() {
@@ -88,7 +87,8 @@ public final class Toolbox {
     /**
      * 快速打印格式化字符串内容
      * 
-     * @param str 打印内容
+     * @param pattern 字符串模版
+     * @param args    参数列表
      */
     public static void println(String pattern, Object... args) {
         System.out.println(format(pattern, args));
@@ -101,8 +101,8 @@ public final class Toolbox {
      * @param args    参数列表
      * @return 格式化后的格式化字符串
      */
-    public static String format(String pattern, Object... arg) {
-        return ToStringHepler.format(pattern, arg);
+    public static String format(String pattern, Object... args) {
+        return ToStringHepler.format(pattern, args);
     }
 
     /**
