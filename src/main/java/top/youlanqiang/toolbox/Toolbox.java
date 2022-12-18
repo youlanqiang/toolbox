@@ -3,13 +3,16 @@ package top.youlanqiang.toolbox;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import top.youlanqiang.toolbox.basic.EqualsHepler;
 import top.youlanqiang.toolbox.basic.ObjectHepler;
 import top.youlanqiang.toolbox.basic.ToStringHepler;
 import top.youlanqiang.toolbox.collection.Pair;
 import top.youlanqiang.toolbox.collection.Triple;
+import top.youlanqiang.toolbox.concurrent.ThreadHepler;
 
 /**
  * @author youlanqiang
@@ -202,6 +205,38 @@ public final class Toolbox {
         if (!result) {
             throw exceptionSupplier.get();
         }
+    }
+
+    public static void sleep(int time) {
+        ThreadHepler.sleep(time);
+    }
+
+    public static void sleep(int time, TimeUnit timeUnit) {
+        ThreadHepler.sleep(time, timeUnit);
+    }
+
+    public static void batchStart(Thread... threads) {
+        ThreadHepler.batchStart(threads);
+    }
+
+    public static void batchStart(Collection<Thread> list) {
+        ThreadHepler.batchStart(list);
+    }
+
+    public static void batchStart(Stream<Thread> stream) {
+        ThreadHepler.batchStart(stream);
+    }
+
+    public static void batchInterrupt(Thread... threads) {
+        ThreadHepler.batchInterrupt(threads);
+    }
+
+    public static void batchInterrupt(Collection<Thread> list) {
+        ThreadHepler.batchInterrupt(list);
+    }
+
+    public static void batchInterrupt(Stream<Thread> stream) {
+        ThreadHepler.batchInterrupt(stream);
     }
 
 }
