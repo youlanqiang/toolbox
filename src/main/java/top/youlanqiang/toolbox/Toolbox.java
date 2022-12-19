@@ -2,14 +2,13 @@ package top.youlanqiang.toolbox;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import top.youlanqiang.toolbox.basic.EqualsHepler;
-import top.youlanqiang.toolbox.basic.ObjectHepler;
-import top.youlanqiang.toolbox.basic.ToStringHepler;
+import top.youlanqiang.toolbox.base.EqualsHepler;
+import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.base.ToStringHepler;
 import top.youlanqiang.toolbox.collection.Pair;
 import top.youlanqiang.toolbox.collection.Triple;
 import top.youlanqiang.toolbox.concurrent.ThreadHepler;
@@ -25,8 +24,11 @@ public final class Toolbox {
     }
 
     /**
-     * @see Triple
-     *
+     * 创建一个不可变Triple对象
+     * 
+     * @param <L>    左值泛型
+     * @param <M>    中值泛型
+     * @param <R>    右值泛型
      * @param left   左值
      * @param middle 中值
      * @param right  右值
@@ -37,8 +39,11 @@ public final class Toolbox {
     }
 
     /**
-     * @see Triple
-     *
+     * 创建一个可变Triple对象
+     * 
+     * @param <L> 左值泛型
+     * @param <M> 中值泛型
+     * @param <R> 右值泛型
      * @return 可变Triple对象
      */
     public static <L, M, R> Triple<L, M, R> buildTriple() {
@@ -46,33 +51,46 @@ public final class Toolbox {
     }
 
     /**
-     * @see Pair
+     * 创建一个不可变的Pair对象
      * 
+     * @param <L>   左值泛型
+     * @param <R>   右值泛型
      * @param left  左值
      * @param right 右值
-     * @return 不可变Pair对象
+     * @return ImmutablePair
      */
     public static <L, R> Pair<L, R> ofPair(L left, R right) {
         return Pair.of(left, right);
     }
 
     /**
-     * @see Pair
+     * 创建一个可变的Pair空对象
      * 
-     * @return 可变Pair对象
+     * @param <L> 左值泛型
+     * @param <R> 右值泛型
+     * @return MutablePair
      */
     public static <L, R> Pair<L, R> buildPair() {
         return Pair.build();
     }
 
+    /**
+     * 创建一个可变的Pair对象
+     * 
+     * @param <L>   左值泛型
+     * @param <R>   右值泛型
+     * @param left  左值
+     * @param right 右值
+     * @return MutablePair
+     */
     public static <L, R> Pair<L, R> buildPair(L left, R right) {
         return Pair.build(left, right);
     }
 
     /**
-     * 创建一个比较器
+     * 创建一个等值比较器
      * 
-     * @return
+     * @return 等值比较器
      */
     public static EqualsHepler equalsHepler() {
         return new EqualsHepler();
@@ -90,7 +108,7 @@ public final class Toolbox {
     /**
      * 快速打印格式化字符串内容
      * 
-     * @param pattern 字符串模版
+     * @param pattern 格式化字符串
      * @param args    参数列表
      */
     public static void println(String pattern, Object... args) {
@@ -109,22 +127,20 @@ public final class Toolbox {
     }
 
     /**
-     * 创建内部类ObjectToStringBuilder，传入class的类名
-     * {@link ToStringHepler#build}
+     * 创建内部类ObjectToStringBuilder，传入obj对象会将对象class的simpleName设置为默认名称
      * 
-     * @param obj
-     * @return
+     * @param obj 构造器的默认对象
+     * @return 对象字符串构造器
      */
     public static ToStringHepler.ObjectToStringBuilder toString(Object obj) {
         return ToStringHepler.build(obj);
     }
 
     /**
-     * 创建内部类ObjectToStringBuilder，传入类型名称
-     * {@link ToStringHepler#build}
+     * 创建内部类ObjectToStringBuilder，传入class名称
      * 
      * @param className 类型的名称
-     * @return
+     * @return 对象字符串构造器
      */
     public static ToStringHepler.ObjectToStringBuilder toString(String className) {
         return ToStringHepler.build(className);
@@ -144,10 +160,9 @@ public final class Toolbox {
 
     /**
      * 创建内部类ObjectToStringBuilder，传入class的类名
-     * {@link ToStringHepler#build}
      * 
      * @param clazz 类型
-     * @return
+     * @return 对象字符串构造器
      */
     public static ToStringHepler.ObjectToStringBuilder toString(Class<?> clazz) {
         return ToStringHepler.build(clazz);
@@ -160,7 +175,7 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(Object obj) {
-        return Objects.isNull(obj) || ObjectHepler.isEmpty(obj);
+        return ObjectHepler.isEmpty(obj);
     }
 
     /**
@@ -196,9 +211,10 @@ public final class Toolbox {
     /**
      * result为false，则抛出自定义的exception
      * 
+     * @param <X>               自定义异常
      * @param result            断言结果
      * @param exceptionSupplier 自定义异常
-     * @throws X
+     * @throws X 自定义的异常
      */
     public static <X extends Throwable> void assertBoolean(boolean result,
             Supplier<? extends X> exceptionSupplier) throws X {
@@ -207,34 +223,75 @@ public final class Toolbox {
         }
     }
 
-    public static void sleep(int time) {
-        ThreadHepler.sleep(time);
+    /**
+     * 当前线程睡眠，单位为秒
+     * 
+     * @param seconds 睡眠时长/秒
+     */
+    public static void sleep(int seconds) {
+        ThreadHepler.sleep(seconds);
     }
 
-    public static void sleep(int time, TimeUnit timeUnit) {
-        ThreadHepler.sleep(time, timeUnit);
+    /**
+     * 当前线程睡眠
+     * 
+     * @param times    时长
+     * @param timeUnit 时间单位
+     */
+    public static void sleep(int times, TimeUnit timeUnit) {
+        ThreadHepler.sleep(times, timeUnit);
     }
 
+    /**
+     * 批量启动
+     * 
+     * @param threads 线程数组
+     */
     public static void batchStart(Thread... threads) {
         ThreadHepler.batchStart(threads);
     }
 
+    /**
+     * 批量启动
+     * 
+     * @param list 线程集合
+     */
     public static void batchStart(Collection<Thread> list) {
         ThreadHepler.batchStart(list);
     }
 
+    /**
+     * 批量启动
+     * 
+     * @param stream 线程流
+     */
     public static void batchStart(Stream<Thread> stream) {
         ThreadHepler.batchStart(stream);
     }
 
+    /**
+     * 批量打断
+     * 
+     * @param threads 线程数组
+     */
     public static void batchInterrupt(Thread... threads) {
         ThreadHepler.batchInterrupt(threads);
     }
 
+    /**
+     * 批量打断
+     * 
+     * @param list 线程集合
+     */
     public static void batchInterrupt(Collection<Thread> list) {
         ThreadHepler.batchInterrupt(list);
     }
 
+    /**
+     * 批量打断
+     * 
+     * @param stream 线程流
+     */
     public static void batchInterrupt(Stream<Thread> stream) {
         ThreadHepler.batchInterrupt(stream);
     }

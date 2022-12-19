@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.basic;
+package top.youlanqiang.toolbox.base;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
@@ -19,12 +19,16 @@ public final class ObjectHepler {
     }
 
     /**
-     * 判断value是否为空
+     * 判断value对象是否为空
      * 
-     * @param value
-     * @return true or false
+     * @param value 判断对象
+     * @return 为空返回true
      */
     public static boolean isEmpty(Object value) {
+        if (value == null) {
+            return true;
+        }
+
         // 将估计最频繁使用的类型首先判断
         if (value instanceof CharSequence) {
             return ((CharSequence) value).length() == 0;
@@ -61,7 +65,7 @@ public final class ObjectHepler {
     /**
      * 深拷贝一个对象
      * 
-     * @param <T>
+     * @param <T>    泛型对象
      * @param source 源对象
      * @return 深拷贝后新对象
      */

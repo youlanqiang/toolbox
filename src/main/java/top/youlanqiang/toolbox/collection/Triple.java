@@ -12,24 +12,76 @@ public abstract class Triple<L, M, R> {
     private Triple() {
     };
 
+    /**
+     * 创建一个不可变Triple对象
+     * 
+     * @param <L>    左值泛型
+     * @param <M>    中值泛型
+     * @param <R>    右值泛型
+     * @param left   左值
+     * @param middle 中值
+     * @param right  右值
+     * @return 不可变Triple对象
+     */
     public static <L, M, R> Triple<L, M, R> of(L left, M middle, R right) {
         return new ImmutableTriple<>(left, middle, right);
     }
 
+    /**
+     * 创建一个可变Triple对象
+     * 
+     * @param <L> 左值泛型
+     * @param <M> 中值泛型
+     * @param <R> 右值泛型
+     * @return 可变Triple对象
+     */
     public static <L, M, R> Triple<L, M, R> build() {
         return new MutableTriple<>();
     }
 
+    /**
+     * 获取左值
+     * 
+     * @return 左值
+     */
     public abstract L getLeft();
 
+    /**
+     * 获取中值
+     * 
+     * @return 中值
+     */
     public abstract M getMiddle();
 
+    /**
+     * 获取右值
+     * 
+     * @return 右值
+     */
     public abstract R getRight();
 
+    /**
+     * 设置左值
+     * 
+     * @param left 左值
+     * @return this
+     */
     public abstract Triple<L, M, R> setLeft(L left);
 
+    /**
+     * 设置中值
+     * 
+     * @param middle 中值
+     * @return this
+     */
     public abstract Triple<L, M, R> setMiddle(M middle);
 
+    /**
+     * 设置右值
+     * 
+     * @param right 右值
+     * @return this
+     */
     public abstract Triple<L, M, R> setRight(R right);
 
     @Override

@@ -14,12 +14,34 @@ public abstract class Pair<L, R> implements Entry<L, R> {
     private Pair() {
     };
 
+    /**
+     * 获取左值
+     * 
+     * @return 左值
+     */
     public abstract L getLeft();
 
+    /**
+     * 获取右值
+     * 
+     * @return 右值
+     */
     public abstract R getRight();
 
+    /**
+     * 设置左值，对象是不可变对象时直接报错
+     * 
+     * @param left 左值
+     * @return this
+     */
     public abstract Pair<L, R> setLeft(L left);
 
+    /**
+     * 设置右值，对象是不可变对象时直接报错
+     * 
+     * @param right 右值
+     * @return this
+     */
     public abstract Pair<L, R> setRight(R right);
 
     @Override
@@ -43,6 +65,8 @@ public abstract class Pair<L, R> implements Entry<L, R> {
      * 创建一个不可变的Pair对象
      * 
      * @see ImmutablePair
+     * @param <L>   左值泛型
+     * @param <R>   右值泛型
      * @param left  左值
      * @param right 右值
      * @return ImmutablePair
@@ -55,6 +79,8 @@ public abstract class Pair<L, R> implements Entry<L, R> {
      * 创建一个可变的Pair空对象
      * 
      * @see MutablePair
+     * @param <L> 左值泛型
+     * @param <R> 右值泛型
      * @return MutablePair
      */
     public static <L, R> Pair<L, R> build() {
@@ -65,6 +91,8 @@ public abstract class Pair<L, R> implements Entry<L, R> {
      * 创建一个可变的Pair对象
      * 
      * @see MutablePair
+     * @param <L>   左值泛型
+     * @param <R>   右值泛型
      * @param left  左值
      * @param right 右值
      * @return MutablePair

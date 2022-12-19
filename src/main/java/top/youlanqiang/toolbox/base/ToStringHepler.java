@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.basic;
+package top.youlanqiang.toolbox.base;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -28,7 +28,7 @@ public final class ToStringHepler {
 	/**
 	 * 使用默认的占位符格式化字符串内容
 	 * 
-	 * @param pattern 字符串模版
+	 * @param pattern 格式化字符串
 	 * @param args    参数列表
 	 * @return 格式化后的格式化字符串
 	 */
@@ -39,7 +39,7 @@ public final class ToStringHepler {
 	/**
 	 * 格式化字符串内容
 	 * 
-	 * @param pattern 字符串模版
+	 * @param pattern 格式化字符串
 	 * @param holder  占位符标签
 	 * @param args    参数列表
 	 * @return 格式化后的格式化字符串
@@ -95,10 +95,10 @@ public final class ToStringHepler {
 	}
 
 	/**
-	 * 创建内部类ObjectToStringBuilder，传入class的类名
+	 * 创建内部类ObjectToStringBuilder，传入obj对象会将对象class的simpleName设置为默认名称
 	 * 
-	 * @param obj
-	 * @return
+	 * @param obj 构造器的默认对象
+	 * @return 对象字符串构造器
 	 */
 	public static ObjectToStringBuilder build(Object obj) {
 		return new ObjectToStringBuilder(obj.getClass().getSimpleName());
@@ -108,17 +108,17 @@ public final class ToStringHepler {
 	 * 创建内部类ObjectToStringBuilder，传入class的类名
 	 * 
 	 * @param clazz 类型
-	 * @return
+	 * @return 对象字符串构造器
 	 */
 	public static ObjectToStringBuilder build(Class<?> clazz) {
 		return new ObjectToStringBuilder(clazz.getSimpleName());
 	}
 
 	/**
-	 * 创建内部类ObjectToStringBuilder，传入类型名称
+	 * 创建内部类ObjectToStringBuilder，传入class名称
 	 * 
 	 * @param className 类型的名称
-	 * @return
+	 * @return 对象字符串构造器
 	 */
 	public static ObjectToStringBuilder build(String className) {
 		return new ObjectToStringBuilder(className);
@@ -133,11 +133,25 @@ public final class ToStringHepler {
 
 		private final List<Entry<String, Object>> fieldEntries;
 
+		/**
+		 * 对象字符串构造器，生成的字符串会将对象类名作为前缀
+		 * 如: Map{k=1,k=2}
+		 * 
+		 * @param className 对象类名
+		 */
 		public ObjectToStringBuilder(String className) {
 			this.className = className;
 			this.fieldEntries = new LinkedList<>();
 		}
 
+		/**
+		 * 将对象属性和值放入字符串构造器中，调用toString方法会生成
+		 * ClassName{key=value}的可读字符串
+		 * 
+		 * @param key   对象属性
+		 * @param value 对象值
+		 * @return this
+		 */
 		public ObjectToStringBuilder put(String key, Object value) {
 			this.fieldEntries.add(Pair.of(key, value));
 			return this;
@@ -182,6 +196,15 @@ public final class ToStringHepler {
 		return builder.toString();
 	}
 
+	/**
+	 * 将传入的字符串转为可读的字符串对象
+	 * 
+	 * @param list      集合
+	 * @param open      字符串头
+	 * @param close     字符串尾
+	 * @param separator 分隔符
+	 * @return 转换后的字符串
+	 */
 	public static String listToString(Collection<?> list, String open, String close, String separator) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(open);
