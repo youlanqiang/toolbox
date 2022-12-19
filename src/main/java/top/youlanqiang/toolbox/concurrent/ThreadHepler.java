@@ -5,8 +5,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 /**
+ * Thread线程工具类
+ * 
  * @author youlanqiang
- *         Thread线程工具类
+ * 
  */
 public final class ThreadHepler {
 
@@ -37,7 +39,7 @@ public final class ThreadHepler {
     }
 
     /**
-     * 批量启动
+     * 线程批量启动
      * 
      * @param threads 线程数组
      */
@@ -46,7 +48,7 @@ public final class ThreadHepler {
     }
 
     /**
-     * 批量启动
+     * 线程批量启动
      * 
      * @param list 线程集合
      */
@@ -55,7 +57,7 @@ public final class ThreadHepler {
     }
 
     /**
-     * 批量启动
+     * 线程批量启动
      * 
      * @param stream 线程流
      */
@@ -64,7 +66,7 @@ public final class ThreadHepler {
     }
 
     /**
-     * 批量打断
+     * 线程批量打断
      * 
      * @param threads 线程数组
      */
@@ -73,7 +75,7 @@ public final class ThreadHepler {
     }
 
     /**
-     * 批量打断
+     * 线程批量打断
      * 
      * @param list 线程集合
      */
@@ -82,7 +84,7 @@ public final class ThreadHepler {
     }
 
     /**
-     * 批量打断
+     * 线程批量打断
      * 
      * @param stream 线程流
      */

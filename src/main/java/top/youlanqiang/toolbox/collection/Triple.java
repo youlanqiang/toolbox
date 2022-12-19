@@ -3,9 +3,12 @@ package top.youlanqiang.toolbox.collection;
 import top.youlanqiang.toolbox.Toolbox;
 
 /**
+ * 
+ * Triple提供返回3个元素组成的对象
+ * 
  * @author youlanqiang
  *         created in 2022/10/14 22:34
- *         Triple提供返回3个元素组成的对象
+ * 
  */
 public abstract class Triple<L, M, R> {
 

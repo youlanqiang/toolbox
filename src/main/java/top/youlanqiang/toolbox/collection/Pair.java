@@ -5,9 +5,11 @@ import java.util.Map.Entry;
 import top.youlanqiang.toolbox.Toolbox;
 
 /**
+ * Pair提供返回2个元素组成的对象
+ * 
  * @author youlanqiang
  *         created in 2022/10/14 22:18
- *         Pair提供返回2个元素组成的对象
+ * 
  */
 public abstract class Pair<L, R> implements Entry<L, R> {
 

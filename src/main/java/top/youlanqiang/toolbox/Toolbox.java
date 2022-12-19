@@ -14,9 +14,11 @@ import top.youlanqiang.toolbox.collection.Triple;
 import top.youlanqiang.toolbox.concurrent.ThreadHepler;
 
 /**
+ * 工具类常用方法的集合
+ * 
  * @author youlanqiang
  *         created in 2022/12/03 09:30
- *         常用工具类
+ * 
  */
 public final class Toolbox {
 
@@ -243,7 +245,7 @@ public final class Toolbox {
     }
 
     /**
-     * 批量启动
+     * 线程批量启动
      * 
      * @param threads 线程数组
      */
@@ -252,7 +254,7 @@ public final class Toolbox {
     }
 
     /**
-     * 批量启动
+     * 线程批量启动
      * 
      * @param list 线程集合
      */
@@ -261,7 +263,7 @@ public final class Toolbox {
     }
 
     /**
-     * 批量启动
+     * 线程批量启动
      * 
      * @param stream 线程流
      */
@@ -270,7 +272,7 @@ public final class Toolbox {
     }
 
     /**
-     * 批量打断
+     * 线程批量打断
      * 
      * @param threads 线程数组
      */
@@ -279,7 +281,7 @@ public final class Toolbox {
     }
 
     /**
-     * 批量打断
+     * 线程批量打断
      * 
      * @param list 线程集合
      */
@@ -288,7 +290,7 @@ public final class Toolbox {
     }
 
     /**
-     * 批量打断
+     * 线程批量打断
      * 
      * @param stream 线程流
      */

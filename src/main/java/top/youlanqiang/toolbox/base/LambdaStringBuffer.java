@@ -6,9 +6,11 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 /**
+ * 基于线程安全的StringBuffer构造的LambdaStringBuilder类
+ * 
  * @author youlanqiang
  *         created in 2022/12/15 23:2
- *         基于线程安全的StringBuffer构造的LambdaStringBuilder类
+ * 
  */
 public class LambdaStringBuffer implements AbstractLambdaStringBuilder {
 

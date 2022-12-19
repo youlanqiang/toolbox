@@ -1,6 +1,8 @@
 /**
+ * 一些jdk未提供的常用实体类的包
+ * 
  * @author youlanqiang
- *         一些jdk未提供的常用实体类的包
+ *         
  */
 package top.youlanqiang.toolbox.collection;
 

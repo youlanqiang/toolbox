@@ -6,10 +6,12 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 /**
+ * 基于线程不安全的StringBuilder构造的LambdaStringBuilder类
+ * 单线程下性能更好
+ * 
  * @author youlanqiang
  *         created in 2022/12/15 23:2
- *         基于线程不安全的StringBuilder构造的LambdaStringBuilder类
- *         单线程下性能更好
+ * 
  */
 public class LambdaStringBuilder implements AbstractLambdaStringBuilder {
 

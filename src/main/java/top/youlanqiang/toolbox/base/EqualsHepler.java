@@ -1,10 +1,12 @@
 package top.youlanqiang.toolbox.base;
 
 /**
+ * 等值比较器
+ * 用于比较属性是否相同,可以添加多个比较条件然后返回一个比较结果。
+ * 
  * @author youlanqiang
  *         created in 2022/12/03 09:56
- *         等值比较器
- *         用于比较属性是否相同,可以添加多个比较条件然后返回一个比较结果。
+ * 
  */
 public final class EqualsHepler {
 

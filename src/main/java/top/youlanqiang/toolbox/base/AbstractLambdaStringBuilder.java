@@ -4,12 +4,14 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
+ * 流式字符串构造器，在JDK提供的AbstractStringBuilder基础上提供了更多的操作
+ * {@link LambdaStringBuffer} 基于线程安全的StringBuffer实现类
+ * {@link LambdaStringBuilder}
+ * 基于线程不安全的StringBuilder实现，单线程下性能比StringBuffer快
+ * 
  * @author youlanqiang
  *         created in 2022/12/15 23:2
- *         流式字符串构造器，在JDK提供的AbstractStringBuilder基础上提供了更多的操作
- *         {@link LambdaStringBuffer} 基于线程安全的StringBuffer实现类
- *         {@link LambdaStringBuilder}
- *         基于线程不安全的StringBuilder实现，单线程下性能比StringBuffer快
+ * 
  */
 interface AbstractLambdaStringBuilder {
 

@@ -3,9 +3,11 @@ package top.youlanqiang.toolbox.collection;
 import java.util.List;
 
 /**
+ * 层次树对象
+ * 
  * @author youlanqiang
  *         created in 2022/10/15 22:33
- *         层次树对象
+ * 
  */
 public class TreeNode<K, V> {
 

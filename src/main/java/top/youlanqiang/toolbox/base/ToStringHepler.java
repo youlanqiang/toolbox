@@ -11,9 +11,12 @@ import top.youlanqiang.toolbox.Toolbox;
 import top.youlanqiang.toolbox.collection.Pair;
 
 /**
+ * 
+ * 字符串工具类
+ * 
  * @author youlanqiang
  *         created in 2022/12/03 09:56
- *         字符串工具类
+ * 
  */
 public final class ToStringHepler {
 
