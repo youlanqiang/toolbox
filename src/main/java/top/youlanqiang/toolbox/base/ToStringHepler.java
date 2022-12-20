@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Map.Entry;
 
-import top.youlanqiang.toolbox.Toolbox;
 import top.youlanqiang.toolbox.collection.Pair;
 
 /**
@@ -48,7 +47,7 @@ public final class ToStringHepler {
 	 * @return 格式化后的格式化字符串
 	 */
 	public static String format(String pattern, String holder, Object... args) {
-		if (Toolbox.isEmpty(pattern) || Toolbox.isEmpty(args)) {
+		if (ObjectHepler.isEmpty(pattern) || ObjectHepler.isEmpty(args)) {
 			return pattern;
 		}
 		final int strPatternLength = pattern.length();

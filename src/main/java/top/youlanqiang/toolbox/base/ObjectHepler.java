@@ -1,6 +1,7 @@
 package top.youlanqiang.toolbox.base;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -55,23 +56,20 @@ public final class ObjectHepler {
     }
 
     /**
-     * 复制source中的属性对象至target对象
+     * todo 未完成
      * 
-     * @param source 源对象
-     * @param target 目标对象
+     * @param <T>
+     * @param clazz
+     * @return
      */
-    public static void copyProperties(Object source, Object target) {
-        // todo
-    }
+    public static <T> T newInstance(Class<T> clazz) {
+        try {
+            return clazz.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
 
-    /**
-     * 深拷贝一个对象
-     * 
-     * @param <T>    泛型对象
-     * @param source 源对象
-     * @return 深拷贝后新对象
-     */
-    public static <T> T copy(T source) {
+            e.printStackTrace();
+        }
         return null;
     }
 

@@ -13,7 +13,7 @@ public class TreeNode<K, V> {
 
     private K key;
 
-    private V value;
+    private V raw;
 
     private List<TreeNode<K, V>> children;
 
@@ -40,17 +40,17 @@ public class TreeNode<K, V> {
      * 
      * @return 对象的value
      */
-    public V getValue() {
-        return value;
+    public V getRaw() {
+        return raw;
     }
 
     /**
      * 设置对象的value值
      * 
-     * @param value 对象的value值
+     * @param raw 对象的value值
      */
-    public void setValue(V value) {
-        this.value = value;
+    public void setRaw(V raw) {
+        this.raw = raw;
     }
 
     /**
