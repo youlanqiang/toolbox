@@ -13,7 +13,7 @@ import java.util.Map;
  *         created in 2022/12/15 23:2
  * 
  */
-interface AbstractLambdaStringBuilder {
+public interface AbstractLambdaStringBuilder {
 
     AbstractLambdaStringBuilder append(Object obj);
 
@@ -42,11 +42,21 @@ interface AbstractLambdaStringBuilder {
 
     /**
      * 循环添加Map中的对象
+     * keyValueSeparator为=
+     * separator为,
+     * 
+     * @param map map对象
+     * @return this
+     */
+    AbstractLambdaStringBuilder append(Map<?, ?> map);
+
+    /**
+     * 循环添加Map中的对象
      * 
      * @param map               map对象
      * @param separator         entry分割符号
      * @param keyValueSeparator kv分割符号
-     * @return string
+     * @return this
      */
     AbstractLambdaStringBuilder append(Map<?, ?> map, String keyValueSeparator, String separator);
 

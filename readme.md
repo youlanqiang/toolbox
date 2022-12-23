@@ -15,6 +15,21 @@ toolbox是一个轻量java类库，jdk最低要求为17，封装了一些jdk没�
 - 无其他依赖
 
 ## 安装
-目前正在孵化中...
 
+Gradle:
+```gradle
+
+
+implementation 'top.youlanqiang:toolbox:1.0.0'
+
+```
+
+Maven:
+```xml
+<dependency>
+    <groupId>top.youlanqiang</groupId>
+    <artifactId>toolbox</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 

@@ -1,9 +1,9 @@
 package top.youlanqiang.toolbox.base;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 /**
  * 基于线程不安全的StringBuilder构造的LambdaStringBuilder类
@@ -33,40 +33,57 @@ public class LambdaStringBuilder implements AbstractLambdaStringBuilder {
         this.buffer = new StringBuilder(str);
     }
 
-    public LambdaStringBuilder append(Object obj) {
-        buffer.append(obj);
-        return this;
-    }
-
-    public LambdaStringBuilder append(Object... objs) {
-        buffer.append(objs);
-        return this;
-    }
-
-    public LambdaStringBuilder append(boolean condition, Object obj) {
-        if (condition) {
-            buffer.append(obj);
+    @Override
+    public AbstractLambdaStringBuilder append(Object obj) {
+        if (obj instanceof Collection<?> list) {
+            return append(list);
+        } else if (obj instanceof Map<?, ?> map) {
+            return append(map);
+        } else {
+            buffer.append(obj.toString());
         }
         return this;
     }
 
-    public LambdaStringBuilder append(boolean condition, Object... objs) {
+    @Override
+    public AbstractLambdaStringBuilder append(Object... objs) {
+        return append(Arrays.asList(objs));
+    }
+
+    @Override
+    public AbstractLambdaStringBuilder append(boolean condition, Object obj) {
         if (condition) {
-            buffer.append(objs);
+            return append(obj);
         }
         return this;
     }
 
-    public LambdaStringBuilder append(Collection<?> list) {
-        return append(list, "");
+    @Override
+    public AbstractLambdaStringBuilder append(boolean condition, Object... objs) {
+        if (condition) {
+            return append(objs);
+        }
+        return this;
     }
 
-    public LambdaStringBuilder append(Collection<?> list, String separator) {
+    @Override
+    public AbstractLambdaStringBuilder append(Collection<?> list) {
+        return append(list, PACKAGE_CONST.DEFAULT_ARRAY_SEPARATOR);
+    }
+
+    @Override
+    public AbstractLambdaStringBuilder append(Collection<?> list, String separator) {
         list.forEach(item -> buffer.append(item).append(separator));
         return this.deleteLast(separator.length());
     }
 
-    public LambdaStringBuilder append(Map<?, ?> map, String keyValueSeparator, String separator) {
+    @Override
+    public AbstractLambdaStringBuilder append(Map<?, ?> map) {
+        return append(map, PACKAGE_CONST.DEFAULT_K_V_SEPARATOR, PACKAGE_CONST.DEFAULT_SEPARATOR);
+    }
+
+    @Override
+    public AbstractLambdaStringBuilder append(Map<?, ?> map, String keyValueSeparator, String separator) {
         map.forEach((k, v) -> {
             buffer
                     .append(Objects.toString(k))
@@ -77,60 +94,73 @@ public class LambdaStringBuilder implements AbstractLambdaStringBuilder {
         return this.deleteLast(separator.length());
     }
 
-    public LambdaStringBuilder setCharAt(int index, char ch) {
+    @Override
+    public AbstractLambdaStringBuilder setCharAt(int index, char ch) {
         buffer.setCharAt(index, ch);
         return this;
     }
 
-    public LambdaStringBuilder repeat(int count) {
-        String tempStr = buffer.toString();
-        IntStream.of(count).forEach(x -> {
-            buffer.append(tempStr);
-        });
+    @Override
+    public AbstractLambdaStringBuilder repeat(int count) {
+        if (count <= 0) {
+            return this;
+        }
+
+        buffer.append(buffer.toString().repeat(count - 1));
+
         return this;
     }
 
-    public LambdaStringBuilder delete(int start, int end) {
+    @Override
+    public AbstractLambdaStringBuilder delete(int start, int end) {
         buffer.delete(start, end);
         return this;
     }
 
-    public LambdaStringBuilder deleteFirstChar() {
+    @Override
+    public AbstractLambdaStringBuilder deleteFirstChar() {
         return deleteFirst(1);
     }
 
-    public LambdaStringBuilder deleteFirst(int size) {
+    @Override
+    public AbstractLambdaStringBuilder deleteFirst(int size) {
         buffer.delete(0, size);
         return this;
     }
 
-    public LambdaStringBuilder deleteLastChar() {
+    @Override
+    public AbstractLambdaStringBuilder deleteLastChar() {
         return deleteLast(1);
     }
 
-    public LambdaStringBuilder deleteLast(int size) {
+    @Override
+    public AbstractLambdaStringBuilder deleteLast(int size) {
         int lastIndex = buffer.length() - 1;
         buffer.delete(lastIndex - size, lastIndex);
         return this;
     }
 
-    public LambdaStringBuilder clean() {
+    @Override
+    public AbstractLambdaStringBuilder clean() {
         buffer.delete(0, buffer.length());
         return this;
     }
 
-    public LambdaStringBuilder reverse() {
+    @Override
+    public AbstractLambdaStringBuilder reverse() {
         buffer.reverse();
         return this;
     }
 
-    public LambdaStringBuilder toLowerCase() {
+    @Override
+    public AbstractLambdaStringBuilder toLowerCase() {
         String tempStr = buffer.toString().toLowerCase();
         buffer.insert(0, tempStr);
         return this;
     }
 
-    public LambdaStringBuilder toUpperCase() {
+    @Override
+    public AbstractLambdaStringBuilder toUpperCase() {
         String tempStr = buffer.toString().toUpperCase();
         buffer.insert(0, tempStr);
         return this;
@@ -156,6 +186,11 @@ public class LambdaStringBuilder implements AbstractLambdaStringBuilder {
      */
     public int compareTo(StringBuilder arg) {
         return buffer.compareTo(arg);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return buffer.toString().equals(obj);
     }
 
     @Override
