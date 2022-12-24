@@ -187,7 +187,7 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(Object... objects) {
-        return objects == null || objects.length == 0;
+        return ObjectHepler.isEmpty(objects);
     }
 
     /**
@@ -197,7 +197,7 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(Map<Object, Object> map) {
-        return map == null || map.size() == 0;
+        return ObjectHepler.isEmpty(map);
     }
 
     /**
@@ -207,7 +207,7 @@ public final class Toolbox {
      * @return true or false
      */
     public static boolean isEmpty(Collection<Object> collection) {
-        return collection == null || collection.size() == 0;
+        return ObjectHepler.isEmpty(collection);
     }
 
     /**

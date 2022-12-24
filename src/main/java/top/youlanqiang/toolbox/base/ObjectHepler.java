@@ -1,7 +1,6 @@
 package top.youlanqiang.toolbox.base;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -19,6 +18,36 @@ import java.util.OptionalLong;
 public final class ObjectHepler {
 
     private ObjectHepler() {
+    }
+
+    /**
+     * 集合是否为空
+     * 
+     * @param collection 集合对象
+     * @return true or false
+     */
+    public static boolean isEmpty(Collection<Object> collection) {
+        return collection == null || collection.size() == 0;
+    }
+
+    /**
+     * Map是否为空
+     * 
+     * @param map map对象
+     * @return true or false
+     */
+    public static boolean isEmpty(Map<Object, Object> map) {
+        return map == null || map.size() == 0;
+    }
+
+    /**
+     * 数组是否为空
+     * 
+     * @param objects 数组
+     * @return true or false
+     */
+    public static boolean isEmpty(Object... objects) {
+        return objects == null || objects.length == 0;
     }
 
     /**
@@ -53,24 +82,6 @@ public final class ObjectHepler {
             return Array.getLength(value) == 0;
         }
         return false;
-    }
-
-    /**
-     * todo 未完成
-     * 
-     * @param <T>
-     * @param clazz
-     * @return
-     */
-    public static <T> T newInstance(Class<T> clazz) {
-        try {
-            return clazz.getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
-
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }
