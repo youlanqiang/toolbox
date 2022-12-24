@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import top.youlanqiang.toolbox.base.EqualsHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
 import top.youlanqiang.toolbox.base.ToStringHepler;
+import top.youlanqiang.toolbox.base.ObjectHepler.ObjectCastHepler;
 import top.youlanqiang.toolbox.collection.Pair;
 import top.youlanqiang.toolbox.collection.Triple;
 import top.youlanqiang.toolbox.concurrent.ThreadHepler;
@@ -208,6 +209,26 @@ public final class Toolbox {
      */
     public static boolean isEmpty(Collection<Object> collection) {
         return ObjectHepler.isEmpty(collection);
+    }
+
+    /**
+     * 判断字符串是否为null
+     * 字符串为"null",也会返回true
+     * 
+     * @param str 判断对象
+     * @return true or false
+     */
+    public static boolean isNullString(String str) {
+        return ObjectHepler.isNullString(str);
+    }
+
+    /**
+     * 对象转换工具类
+     * 
+     * @return 对象转换工具类单例对象
+     */
+    public static ObjectCastHepler castHepler() {
+        return ObjectCastHepler.INSTANCE;
     }
 
     /**
