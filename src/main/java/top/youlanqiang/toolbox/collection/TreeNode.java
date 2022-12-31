@@ -9,13 +9,15 @@ import java.util.List;
  *         created in 2022/10/15 22:33
  * 
  */
-public class TreeNode<K, V> {
+public class TreeNode<K, V> implements Comparable<TreeNode<K, V>> {
 
     private K key;
 
     private V raw;
 
     private List<TreeNode<K, V>> children;
+
+    private Long soft;
 
     /**
      * 获取对象的key值，对象的唯一主键
@@ -69,6 +71,35 @@ public class TreeNode<K, V> {
      */
     public void setChildren(List<TreeNode<K, V>> children) {
         this.children = children;
+    }
+
+    /**
+     * 排序
+     * 
+     * @return 对象的排序因子
+     */
+    public Long getSoft() {
+        return this.soft;
+    }
+
+    /**
+     * 设置对象的排序因子
+     * 
+     * @param soft 排序因子
+     */
+    public void setSoft(Long soft) {
+        this.soft = soft;
+    }
+
+    /**
+     * 比较2个TreeNode大小
+     * 
+     * @param o TreeNode
+     * @return 0,1,-1
+     */
+    @Override
+    public int compareTo(TreeNode<K, V> o) {
+        return Long.compare(this.getSoft(), o.getSoft());
     }
 
 }

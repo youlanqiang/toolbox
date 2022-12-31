@@ -1,7 +1,6 @@
 package top.youlanqiang.toolbox.base;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -53,24 +52,6 @@ public final class ObjectHepler {
             return Array.getLength(value) == 0;
         }
         return false;
-    }
-
-    /**
-     * todo 未完成
-     * 
-     * @param <T>
-     * @param clazz
-     * @return
-     */
-    public static <T> T newInstance(Class<T> clazz) {
-        try {
-            return clazz.getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
-
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }

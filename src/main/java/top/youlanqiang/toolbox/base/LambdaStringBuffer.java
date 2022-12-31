@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 /**
  * 基于线程安全的StringBuffer构造的LambdaStringBuilder类
