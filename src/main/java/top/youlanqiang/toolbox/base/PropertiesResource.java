@@ -47,6 +47,36 @@ public class PropertiesResource {
         return getInt(key, null);
     }
 
+    public Byte getByte(String key, Byte defaultVal) {
+        Object value = null;
+        if (mode == PropertiesMode.MAP) {
+            value = map.get(key);
+        } else {
+            value = properties.getProperty(key);
+        }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
+        return ObjectHepler.ObjectCastHepler.INSTANCE.castToByte(value);
+    }
+
+    public Short getShort(String key, Short defaultVal) {
+        Object value = null;
+        if (mode == PropertiesMode.MAP) {
+            value = map.get(key);
+        } else {
+            value = properties.getProperty(key);
+        }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
+        return ObjectHepler.ObjectCastHepler.INSTANCE.castToShort(value);
+    }
+
     public Integer getInt(String key, Integer defaultVal) {
         Object value = null;
         if (mode == PropertiesMode.MAP) {
@@ -55,31 +85,95 @@ public class PropertiesResource {
             value = properties.getProperty(key);
         }
 
-        if (defaultVal != null && value == null) {
+        if (value == null) {
             return defaultVal;
         }
 
         return ObjectHepler.ObjectCastHepler.INSTANCE.castToInteger(value);
     }
 
-    public Long getLong(String key) {
+    public Long getLong(String key, Long defaultVal) {
         Object value = null;
         if (mode == PropertiesMode.MAP) {
             value = map.get(key);
         } else {
             value = properties.getProperty(key);
         }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
         return ObjectHepler.ObjectCastHepler.INSTANCE.castToLong(value);
     }
 
-    public String getString(String key) {
+    public Float getFloat(String key, Float defaultVal) {
         Object value = null;
         if (mode == PropertiesMode.MAP) {
             value = map.get(key);
         } else {
             value = properties.getProperty(key);
         }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
+        return ObjectHepler.ObjectCastHepler.INSTANCE.castToFloat(value);
+    }
+
+    public Double getDouble(String key, Double defaultVal) {
+        Object value = null;
+        if (mode == PropertiesMode.MAP) {
+            value = map.get(key);
+        } else {
+            value = properties.getProperty(key);
+        }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
+        return ObjectHepler.ObjectCastHepler.INSTANCE.castToDouble(value);
+    }
+
+    public Boolean getBoolean(String key, Boolean defaultVal) {
+        Object value = null;
+        if (mode == PropertiesMode.MAP) {
+            value = map.get(key);
+        } else {
+            value = properties.getProperty(key);
+        }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
+        return ObjectHepler.ObjectCastHepler.INSTANCE.castToBoolean(value);
+    }
+
+    public String getString(String key, String defaultVal) {
+        Object value = null;
+        if (mode == PropertiesMode.MAP) {
+            value = map.get(key);
+        } else {
+            value = properties.getProperty(key);
+        }
+
+        if (value == null) {
+            return defaultVal;
+        }
+
         return ObjectHepler.ObjectCastHepler.INSTANCE.castToString(value);
+    }
+
+    @Override
+    public String toString() {
+        if (mode == PropertiesMode.MAP) {
+            return ToStringHepler.mapToString(map, ",", "=");
+        } else {
+            return ToStringHepler.mapToString(properties, ",", "=");
+        }
     }
 
     public PropertiesMode getMode() {
