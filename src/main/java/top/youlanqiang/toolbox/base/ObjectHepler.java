@@ -109,7 +109,7 @@ public final class ObjectHepler {
     }
 
     /**
-     * 对象转换工具类
+     * 基本对象转换工具类
      */
     public enum ObjectCastHepler {
         INSTANCE;
