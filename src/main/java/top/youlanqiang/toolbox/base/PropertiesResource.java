@@ -1,6 +1,7 @@
 package top.youlanqiang.toolbox.base;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -32,10 +33,10 @@ public class PropertiesResource {
      */
     private PropertiesMode mode = PropertiesMode.FILE;
 
-    public PropertiesResource(String path) throws IOException {
+    public PropertiesResource(InputStream stream) throws IOException {
         this.properties = new Properties();
         this.mode = PropertiesMode.FILE;
-        properties.load(Files.newInputStream(Paths.get(path), StandardOpenOption.READ));
+        properties.load(stream);
     }
 
     public PropertiesResource(final Optional<Map<String, Object>> mapOptional) {
@@ -43,8 +44,28 @@ public class PropertiesResource {
         this.mode = PropertiesMode.MAP;
     }
 
+    public Byte getByte(String key) {
+        return getByte(key, null);
+    }
+
+    public Short getShort(String key) {
+        return getShort(key, null);
+    }
+
     public Integer getInt(String key) {
         return getInt(key, null);
+    }
+
+    public Long getLong(String key) {
+        return getLong(key, null);
+    }
+
+    public Float getFloat(String key) {
+        return getFloat(key, null);
+    }
+
+    public Double getDouble(String key) {
+        return getDouble(key, null);
     }
 
     public Byte getByte(String key, Byte defaultVal) {
