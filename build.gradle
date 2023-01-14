@@ -103,3 +103,8 @@ javadoc {
     options.encoding = 'UTF-8'
     options.charSet = 'UTF-8'
 }
+
+compileJava {
+    options.release = 17
+}
+

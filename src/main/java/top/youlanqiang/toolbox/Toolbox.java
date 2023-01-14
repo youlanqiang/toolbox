@@ -1,5 +1,7 @@
 package top.youlanqiang.toolbox;
 
+import java.io.Closeable;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -7,6 +9,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import top.youlanqiang.toolbox.base.EqualsHepler;
+import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
 import top.youlanqiang.toolbox.base.ToStringHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler.ObjectCastHepler;
@@ -150,6 +153,16 @@ public final class Toolbox {
     }
 
     /**
+     * 创建内部类ObjectToStringBuilder，传入class的类名
+     * 
+     * @param clazz 类型
+     * @return 对象字符串构造器
+     */
+    public static ToStringHepler.ObjectToStringBuilder toString(Class<?> clazz) {
+        return ToStringHepler.build(clazz);
+    }
+
+    /**
      * 将map转换为字符串
      * 
      * @param map               map对象
@@ -162,13 +175,20 @@ public final class Toolbox {
     }
 
     /**
-     * 创建内部类ObjectToStringBuilder，传入class的类名
+     * 将传入的字符串转为可读的字符串对象
      * 
-     * @param clazz 类型
-     * @return 对象字符串构造器
+     * @param list      集合
+     * @param open      字符串头
+     * @param close     字符串尾
+     * @param separator 分隔符
+     * @return 转换后的字符串
      */
-    public static ToStringHepler.ObjectToStringBuilder toString(Class<?> clazz) {
-        return ToStringHepler.build(clazz);
+    public static String toString(Collection<?> list, String open, String close, String separator) {
+        return ToStringHepler.listToString(list, open, close, separator);
+    }
+
+    public static String toString(InputStream in) {
+        return IOHepler.getStrAndClose(in);
     }
 
     /**
@@ -317,6 +337,35 @@ public final class Toolbox {
      */
     public static void batchInterrupt(Stream<Thread> stream) {
         ThreadHepler.batchInterrupt(stream);
+    }
+
+    /**
+     * 执行close操作，并忽略掉可能发生的异常
+     * 
+     * @param closeable closeable对象,例如InputStream对象
+     */
+    public static void close(Closeable closeable) {
+        IOHepler.close(closeable);
+    }
+
+    /**
+     * 读取resources文件夹下文件流
+     * 
+     * @param filePath 相对路径
+     * @return 文件流
+     */
+    public static InputStream getResourceAsStream(String filePath) {
+        return IOHepler.getResourceAsStream(filePath);
+    }
+
+    /**
+     * 获取resources下文件流并转换为字符串返回
+     * 
+     * @param filePath 相对文件路径
+     * @return UTF8字符串,读取不到会返回null
+     */
+    public static String getResourceAsStr(String filePath) {
+        return IOHepler.getResourceAsStr(filePath);
     }
 
 }
