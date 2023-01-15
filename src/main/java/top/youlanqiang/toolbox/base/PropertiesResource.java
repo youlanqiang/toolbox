@@ -2,12 +2,17 @@ package top.youlanqiang.toolbox.base;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.stream.Stream;
 
 /**
  * Properties文件读取类
@@ -33,14 +38,38 @@ public class PropertiesResource {
      */
     private PropertiesMode mode = PropertiesMode.FILE;
 
-    public PropertiesResource(Path path) throws IOException {
-        this(Files.newInputStream(path, StandardOpenOption.READ));
+    public static PropertiesResource loadFromInputStream(InputStream stream) throws IOException {
+        return loadFromInputStream(stream, StandardCharsets.UTF_8);
+    }
+
+    public static PropertiesResource loadFromResource(String filePath) throws IOException {
+        return loadFromResource(filePath, StandardCharsets.UTF_8);
+    }
+
+    public static PropertiesResource loadFromResource(String filePath, Charset charset) throws IOException {
+        return loadFromInputStream(IOHepler.getResourceAsStream(filePath), charset);
+    }
+
+    public static PropertiesResource loadFromInputStream(InputStream stream, Charset charset) throws IOException {
+        try {
+            return new PropertiesResource(stream, charset);
+        } finally {
+            IOHepler.close(stream);
+        }
     }
 
     public PropertiesResource(InputStream stream) throws IOException {
+        this(stream, StandardCharsets.UTF_8);
+    }
+
+    public PropertiesResource(InputStream stream, Charset charset) throws IOException {
+        this(new InputStreamReader(stream, charset));
+    }
+
+    public PropertiesResource(Reader reader) throws IOException {
         this.properties = new Properties();
         this.mode = PropertiesMode.FILE;
-        properties.load(stream);
+        properties.load(reader);
     }
 
     public PropertiesResource(final Optional<Map<String, Object>> mapOptional) {
@@ -175,6 +204,10 @@ public class PropertiesResource {
         }
 
         return ObjectHepler.ObjectCastHepler.INSTANCE.castToBoolean(value);
+    }
+
+    public String getString(String key) {
+        return getString(key, null);
     }
 
     public String getString(String key, String defaultVal) {
