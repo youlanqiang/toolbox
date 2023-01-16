@@ -1,5 +1,7 @@
 package top.youlanqiang.toolbox.base;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,7 +14,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
-import java.util.stream.Stream;
 
 /**
  * Properties文件读取类
@@ -37,6 +38,16 @@ public class PropertiesResource {
      * PropertiesResource是从file中获取值还是从map中获取值
      */
     private PropertiesMode mode = PropertiesMode.FILE;
+
+    private Charset charset = StandardCharsets.UTF_8;
+
+    public static PropertiesResource loadFromFile(File file) throws IOException {
+        return loadFromPath(file.toPath());
+    }
+
+    public static PropertiesResource loadFromPath(Path path) throws IOException {
+        return loadFromInputStream(Files.newInputStream(path, StandardOpenOption.READ));
+    }
 
     public static PropertiesResource loadFromInputStream(InputStream stream) throws IOException {
         return loadFromInputStream(stream, StandardCharsets.UTF_8);
@@ -64,6 +75,7 @@ public class PropertiesResource {
 
     public PropertiesResource(InputStream stream, Charset charset) throws IOException {
         this(new InputStreamReader(stream, charset));
+        this.charset = charset;
     }
 
     public PropertiesResource(Reader reader) throws IOException {
@@ -223,6 +235,24 @@ public class PropertiesResource {
         }
 
         return ObjectHepler.ObjectCastHepler.INSTANCE.castToString(value);
+    }
+
+    public Charset getCharset() {
+        return this.charset;
+    }
+
+    public void saveToPath(Path filePath) throws IOException {
+        saveToPath(filePath, null);
+    }
+
+    public void saveToPath(Path filePath, String comments) throws IOException {
+        if (mode == PropertiesMode.MAP) {
+            if (properties == null) {
+                properties = new Properties();
+            }
+            properties.putAll(map);
+        }
+        properties.store(Files.newBufferedWriter(filePath, this.charset, StandardOpenOption.WRITE), comments);
     }
 
     @Override
