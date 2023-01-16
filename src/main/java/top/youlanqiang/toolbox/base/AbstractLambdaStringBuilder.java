@@ -15,12 +15,38 @@ import java.util.Map;
  */
 public interface AbstractLambdaStringBuilder {
 
+    /**
+     * 添加obj对象字符串，会判断是collection还是map类型，会执行对应的字符串化操作
+     * 
+     * @param obj 添加对象
+     * @return this
+     */
     AbstractLambdaStringBuilder append(Object obj);
 
+    /**
+     * 添加obj数组，会判断是collection还是map类型，会执行对应的字符串化操作
+     * 
+     * @param objs obj数组对象
+     * @return this
+     */
     AbstractLambdaStringBuilder append(Object... objs);
 
+    /**
+     * 带判断添加obj对象字符串，会判断是collection还是map类型，会执行对应的字符串化操作
+     * 
+     * @param condition true才会执行操作,false不会执行操作
+     * @param obj       添加对象
+     * @return this
+     */
     AbstractLambdaStringBuilder append(boolean condition, Object obj);
 
+    /**
+     * 带判断添加obj数组，会判断是collection还是map类型，会执行对应的字符串化操作
+     * 
+     * @param condition true才会执行操作,false不会执行操作
+     * @param objs      obj数组对象
+     * @return this
+     */
     AbstractLambdaStringBuilder append(boolean condition, Object... objs);
 
     /**
@@ -60,6 +86,13 @@ public interface AbstractLambdaStringBuilder {
      */
     AbstractLambdaStringBuilder append(Map<?, ?> map, String keyValueSeparator, String separator);
 
+    /**
+     * 设置下标处字符
+     * 
+     * @param index 下标
+     * @param ch    字符
+     * @return this
+     */
     AbstractLambdaStringBuilder setCharAt(int index, char ch);
 
     /**
@@ -82,7 +115,7 @@ public interface AbstractLambdaStringBuilder {
     /**
      * 删除开头第一个字符
      * 
-     * @return
+     * @return this
      */
     AbstractLambdaStringBuilder deleteFirstChar();
 
@@ -116,6 +149,11 @@ public interface AbstractLambdaStringBuilder {
      */
     AbstractLambdaStringBuilder clean();
 
+    /**
+     * 反转字符
+     * 
+     * @return this
+     */
     AbstractLambdaStringBuilder reverse();
 
     /**
@@ -132,10 +170,26 @@ public interface AbstractLambdaStringBuilder {
      */
     AbstractLambdaStringBuilder toUpperCase();
 
+    /**
+     * 返回字符串长度
+     * 
+     * @return 字符串长度
+     */
     int length();
 
+    /**
+     * 返回buffer容量
+     * 
+     * @return buffer容量
+     */
     int capacity();
 
+    /**
+     * 获取下标处字符
+     * 
+     * @param index 下标
+     * @return 字符
+     */
     char charAt(int index);
 
     String toString();

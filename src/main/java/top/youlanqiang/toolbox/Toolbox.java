@@ -1,7 +1,9 @@
 package top.youlanqiang.toolbox;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -11,6 +13,7 @@ import java.util.stream.Stream;
 import top.youlanqiang.toolbox.base.EqualsHepler;
 import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.base.PropertiesResource;
 import top.youlanqiang.toolbox.base.ToStringHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler.ObjectCastHepler;
 import top.youlanqiang.toolbox.collection.Pair;
@@ -187,6 +190,12 @@ public final class Toolbox {
         return ToStringHepler.listToString(list, open, close, separator);
     }
 
+    /**
+     * 获取stream字符串并关闭stream
+     * 
+     * @param in inputstream
+     * @return UTF8字符串,读取不到会返回null
+     */
     public static String toString(InputStream in) {
         return IOHepler.getStrAndClose(in);
     }
@@ -366,6 +375,28 @@ public final class Toolbox {
      */
     public static String getResourceAsStr(String filePath) {
         return IOHepler.getResourceAsStr(filePath);
+    }
+
+    /**
+     * 读取resources下的properties文件
+     * 
+     * @param filePath 相对文件路径
+     * @return PropertiesResource对象,UTF8编码
+     * @throws IOException 读取失败报IOException异常
+     */
+    public static PropertiesResource loadFromResource(String filePath) throws IOException {
+        return PropertiesResource.loadFromResource(filePath);
+    }
+
+    /**
+     * 读取path对应的properties文件
+     * 
+     * @param path 文件对象
+     * @return PropertiesResource对象,UTF8编码
+     * @throws IOException 读取失败报IOException异常
+     */
+    public static PropertiesResource loadFromPath(Path path) throws IOException {
+        return PropertiesResource.loadFromPath(path);
     }
 
 }

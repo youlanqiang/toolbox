@@ -112,6 +112,10 @@ public final class ObjectHepler {
      * 基本对象转换工具类
      */
     public enum ObjectCastHepler {
+
+        /**
+         * 单例对象
+         */
         INSTANCE;
 
         /**
