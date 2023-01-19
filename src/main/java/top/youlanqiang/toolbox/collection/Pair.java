@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 import top.youlanqiang.toolbox.Toolbox;
 
 /**
- * Pair提供返回2个元素组成的对象
+ * 二元对象组
  * 
  * @author youlanqiang
  *         created in 2022/10/14 22:18

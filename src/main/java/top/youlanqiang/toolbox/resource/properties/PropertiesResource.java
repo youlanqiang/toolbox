@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.base;
+package top.youlanqiang.toolbox.resource.properties;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +13,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+
+import top.youlanqiang.toolbox.base.IOHepler;
+import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.base.ToStringHepler;
 
 /**
  * Properties文件读取类

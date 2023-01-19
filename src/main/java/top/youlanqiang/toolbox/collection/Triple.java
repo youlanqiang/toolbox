@@ -4,7 +4,7 @@ import top.youlanqiang.toolbox.Toolbox;
 
 /**
  * 
- * Triple提供返回3个元素组成的对象
+ * 三元对象组
  * 
  * @author youlanqiang
  *         created in 2022/10/14 22:34

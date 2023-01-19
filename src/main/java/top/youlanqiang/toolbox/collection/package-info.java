@@ -1,5 +1,5 @@
 /**
- * 一些jdk未提供的常用实体类的包
+ * 常用实体类
  * 
  * @author youlanqiang
  *         
