@@ -5,6 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * IO工具类
@@ -165,5 +172,46 @@ public final class IOHepler {
      */
     public static String getStrWithThrows(InputStream in, Charset charset) throws IOException {
         return new String(in.readAllBytes(), charset);
+    }
+
+    /**
+     * 将目标path文件压缩成zip保存至store目录
+     * 
+     * @param source 目标文件
+     * @param store  保存目录
+     * @throws IOException 压缩失败io异常
+     */
+    public static void zip(Path source, Path store) throws IOException {
+        Stream<Path> files = Files.walk(source);
+        zip(files, store);
+    }
+
+    /**
+     * 将files文件集合压缩成zip保存至store目录
+     * 
+     * @param files 需要压缩的文件集合
+     * @param store 保存目录
+     * @throws IOException 压缩失败io异常
+     */
+    public static void zip(Stream<Path> files, Path store) throws IOException {
+
+        try (var stream = Files.newOutputStream(store, StandardOpenOption.WRITE);
+                var zipStream = new ZipOutputStream(stream)) {
+
+            // 保证文件遍历的排序，防止出现先遍历出文件夹下的子文件情况。
+            var pathList = files.sorted().collect(Collectors.toList());
+
+            for (Path path : pathList) {
+                if (Files.isDirectory(path)) {
+                    zipStream.putNextEntry(new ZipEntry(path.toString() + "/"));
+
+                } else {
+                    zipStream.putNextEntry(new ZipEntry(path.toString()));
+                    Files.copy(path, zipStream);
+                }
+                zipStream.closeEntry();
+            }
+
+        }
     }
 }
