@@ -15,8 +15,7 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-
+dependencies { 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.1'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.1'
 }

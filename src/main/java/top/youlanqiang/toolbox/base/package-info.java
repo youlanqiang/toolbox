@@ -25,4 +25,9 @@ class PACKAGE_CONST {
      * 默认数组分隔符
      */
     static final String DEFAULT_ARRAY_SEPARATOR = "";
+
+    /**
+     * 默认buffer大小
+     */
+    static final int DEFAULT_BUFFER_SIZE = 64;
 }
