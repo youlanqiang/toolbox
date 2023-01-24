@@ -21,6 +21,26 @@ public final class ObjectHepler {
     }
 
     /**
+     * 判断字符是否是空白符
+     * 
+     * @param ch 字符
+     * @return 是空白符，则返回true
+     */
+    public static boolean isWhiteSpace(Character ch) {
+        return (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n');
+    }
+
+    /**
+     * 判断字符是否是数字
+     * 
+     * @param ch 字符
+     * @return 是数字，则返回true
+     */
+    public static boolean isDigit(Character ch) {
+        return 0 <= ch && ch <= 9;
+    }
+
+    /**
      * 集合是否为空
      * 
      * @param collection 集合对象

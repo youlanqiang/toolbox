@@ -14,12 +14,20 @@ public class ListReader<T> {
 
     private int pos = 0;
 
-    public static ListReader<?> asArrayList() {
-        return new ListReader<>(new ArrayList<>());
+    public static <T> ListReader<T> asArrayList() {
+        return new ListReader<T>(new ArrayList<T>());
+    }
+
+    public static <T> ListReader<T> of(List<T> list) {
+        return new ListReader<>(list);
     }
 
     private ListReader(List<T> list) {
         this.list = list;
+    }
+
+    public void add(T item) {
+        this.list.add(item);
     }
 
     public T peek() {

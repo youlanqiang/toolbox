@@ -252,6 +252,26 @@ public final class Toolbox {
     }
 
     /**
+     * 判断字符是否是空白符
+     * 
+     * @param ch 字符
+     * @return 是空白符，则返回true
+     */
+    public static boolean isWhiteSpace(Character ch) {
+        return ObjectHepler.isWhiteSpace(ch);
+    }
+
+    /**
+     * 判断字符是否是数字
+     * 
+     * @param ch 字符
+     * @return 是数字，则返回true
+     */
+    public static boolean isDigit(Character ch) {
+        return ObjectHepler.isDigit(ch);
+    }
+
+    /**
      * 对象转换工具类
      * 
      * @return 对象转换工具类单例对象
