@@ -46,6 +46,10 @@ public class ListReader<T> {
         return pos < list.size();
     }
 
+    public int size() {
+        return list.size();
+    }
+
     @Override
     public String toString() {
         return ToStringHepler.listToString(list, "[", "]", ",");

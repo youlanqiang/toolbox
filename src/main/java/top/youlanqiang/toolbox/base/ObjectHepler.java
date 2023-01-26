@@ -31,13 +31,23 @@ public final class ObjectHepler {
     }
 
     /**
-     * 判断字符是否是数字
+     * 判断字符是否是数字,字符1的ascii码是49
      * 
      * @param ch 字符
      * @return 是数字，则返回true
      */
     public static boolean isDigit(Character ch) {
-        return 0 <= ch && ch <= 9;
+        return '0' <= ch && ch <= '9';
+    }
+
+    /**
+     * 判断字符是否在十六进制范围
+     * 
+     * @param ch 字符
+     * @return 是十六进制范围字符，则返回true
+     */
+    public static boolean isHex(Character ch) {
+        return ('0' <= ch && ch <= '9') || ('a' <= ch && ch <= 'f') || ('A' <= ch && ch <= 'F');
     }
 
     /**

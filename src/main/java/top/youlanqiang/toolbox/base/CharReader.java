@@ -68,6 +68,7 @@ public class CharReader {
 
     /**
      * pos减一
+     * todo 下标为0时back无效，后续可以考虑新增回到上步操作
      */
     public void back() {
         // 确保不会出现负数下标

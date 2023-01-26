@@ -48,18 +48,6 @@ public final class Toolbox {
     }
 
     /**
-     * 创建一个可变Triple对象
-     * 
-     * @param <L> 左值泛型
-     * @param <M> 中值泛型
-     * @param <R> 右值泛型
-     * @return 可变Triple对象
-     */
-    public static <L, M, R> Triple<L, M, R> buildTriple() {
-        return Triple.build();
-    }
-
-    /**
      * 创建一个不可变的Pair对象
      * 
      * @param <L>   左值泛型
@@ -70,30 +58,6 @@ public final class Toolbox {
      */
     public static <L, R> Pair<L, R> ofPair(L left, R right) {
         return Pair.of(left, right);
-    }
-
-    /**
-     * 创建一个可变的Pair空对象
-     * 
-     * @param <L> 左值泛型
-     * @param <R> 右值泛型
-     * @return MutablePair
-     */
-    public static <L, R> Pair<L, R> buildPair() {
-        return Pair.build();
-    }
-
-    /**
-     * 创建一个可变的Pair对象
-     * 
-     * @param <L>   左值泛型
-     * @param <R>   右值泛型
-     * @param left  左值
-     * @param right 右值
-     * @return MutablePair
-     */
-    public static <L, R> Pair<L, R> buildPair(L left, R right) {
-        return Pair.build(left, right);
     }
 
     /**
@@ -269,6 +233,16 @@ public final class Toolbox {
      */
     public static boolean isDigit(Character ch) {
         return ObjectHepler.isDigit(ch);
+    }
+
+    /**
+     * 判断字符是否在十六进制范围
+     * 
+     * @param ch 字符
+     * @return 是十六进制范围字符，则返回true
+     */
+    public static boolean isHex(Character ch) {
+        return ObjectHepler.isHex(ch);
     }
 
     /**
