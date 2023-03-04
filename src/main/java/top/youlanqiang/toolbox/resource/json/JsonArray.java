@@ -16,140 +16,117 @@ public class JsonArray implements List<Object> {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return list.size();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return list.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.contains(o);
     }
 
     @Override
     public Iterator<Object> iterator() {
-        // TODO Auto-generated method stub
-        return null;
+        return list.iterator();
     }
 
     @Override
     public Object[] toArray() {
-        // TODO Auto-generated method stub
-        return null;
+        return list.toArray();
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        // TODO Auto-generated method stub
-        return null;
+        return list.toArray(a);
     }
 
     @Override
     public boolean add(Object e) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.add(e);
     }
 
     @Override
     public boolean remove(Object o) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.remove(o);
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.containsAll(c);
     }
 
     @Override
     public boolean addAll(Collection<? extends Object> c) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.addAll(c);
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends Object> c) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.addAll(index, c);
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.removeAll(c);
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        // TODO Auto-generated method stub
-        return false;
+        return list.retainAll(c);
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        list.clear();
     }
 
     @Override
     public Object get(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        return list.get(index);
     }
 
     @Override
     public Object set(int index, Object element) {
-        // TODO Auto-generated method stub
-        return null;
+        return list.set(index, element);
     }
 
     @Override
     public void add(int index, Object element) {
-        // TODO Auto-generated method stub
-
+        list.add(index, element);
     }
 
     @Override
     public Object remove(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        return list.remove(index);
     }
 
     @Override
     public int indexOf(Object o) {
-        // TODO Auto-generated method stub
-        return 0;
+        return list.indexOf(o);
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        // TODO Auto-generated method stub
-        return 0;
+        return list.lastIndexOf(o);
     }
 
     @Override
     public ListIterator<Object> listIterator() {
-        // TODO Auto-generated method stub
-        return null;
+        return list.listIterator();
     }
 
     @Override
     public ListIterator<Object> listIterator(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        return list.listIterator(index);
     }
 
     @Override
     public List<Object> subList(int fromIndex, int toIndex) {
-        // TODO Auto-generated method stub
-        return null;
+        return list.subList(fromIndex, toIndex);
     }
 
 }

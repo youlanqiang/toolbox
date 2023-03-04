@@ -20,74 +20,62 @@ public class JsonObject implements Map<String, Object> {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return map.size();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return map.isEmpty();
     }
 
     @Override
     public boolean containsKey(Object key) {
-        // TODO Auto-generated method stub
-        return false;
+        return map.containsKey(key);
     }
 
     @Override
     public boolean containsValue(Object value) {
-        // TODO Auto-generated method stub
-        return false;
+        return map.containsValue(value);
     }
 
     @Override
     public Object get(Object key) {
-        // TODO Auto-generated method stub
-        return null;
+        return map.get(key);
     }
 
     @Override
     public Object put(String key, Object value) {
-        // TODO Auto-generated method stub
-        return null;
+        return map.put(key, value);
     }
 
     @Override
     public Object remove(Object key) {
-        // TODO Auto-generated method stub
-        return null;
+        return map.remove(key);
     }
 
     @Override
     public void putAll(Map<? extends String, ? extends Object> m) {
-        // TODO Auto-generated method stub
-
+        map.putAll(m);
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        map.clear();
     }
 
     @Override
     public Set<String> keySet() {
-        // TODO Auto-generated method stub
-        return null;
+        return map.keySet();
     }
 
     @Override
     public Collection<Object> values() {
-        // TODO Auto-generated method stub
-        return null;
+        return map.values();
     }
 
     @Override
     public Set<Entry<String, Object>> entrySet() {
-        // TODO Auto-generated method stub
-        return null;
+        return map.entrySet();
     }
 
 }
