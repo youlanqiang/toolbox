@@ -12,6 +12,14 @@ import top.youlanqiang.toolbox.base.ObjectHepler;
 @DisplayName("ObjectHepler测试类")
 public class ObjectHeplerTest {
 
+    @DisplayName("测试判空方法")
+    @Test
+    public void testIsEmpty() {
+        Object bar = null;
+        Object foo = null;
+        assertTrue(Toolbox.isEmpty(bar, foo));
+    }
+
     @DisplayName("测试类型转换")
     @Test
     public void testCast() {
