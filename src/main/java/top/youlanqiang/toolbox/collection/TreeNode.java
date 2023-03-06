@@ -17,6 +17,8 @@ public class TreeNode<K, V> implements Comparable<TreeNode<K, V>> {
 
     private List<TreeNode<K, V>> children;
 
+    private TreeNode<K, V> parent;
+
     private Long soft;
 
     /**
@@ -53,6 +55,42 @@ public class TreeNode<K, V> implements Comparable<TreeNode<K, V>> {
      */
     public void setRaw(V raw) {
         this.raw = raw;
+    }
+
+    /**
+     * 获取TreeNode的父节点
+     * 
+     * @return treeNode的父节点
+     */
+    public TreeNode<K, V> getParent() {
+        return parent;
+    }
+
+    /**
+     * 设置TreeNode的父节点
+     * 
+     * @param node 父节点
+     */
+    public void setParent(TreeNode<K, V> node) {
+        this.parent = node;
+    }
+
+    /**
+     * TreeNode是否存在父节点
+     * 
+     * @return true or false
+     */
+    public boolean hasParent() {
+        return parent != null;
+    }
+
+    /**
+     * TreeNode下是否存在子集
+     * 
+     * @return true or false
+     */
+    public boolean hasChildren() {
+        return children != null && !children.isEmpty();
     }
 
     /**
