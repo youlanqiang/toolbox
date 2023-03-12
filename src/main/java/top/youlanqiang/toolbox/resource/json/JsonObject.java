@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import top.youlanqiang.toolbox.base.StringHepler;
+
 /**
  * JSON对象
  * 
@@ -76,6 +78,12 @@ public class JsonObject implements Map<String, Object> {
     @Override
     public Set<Entry<String, Object>> entrySet() {
         return map.entrySet();
+    }
+
+    @Override
+    public String toString() {
+        // todo
+        return null;
     }
 
 }

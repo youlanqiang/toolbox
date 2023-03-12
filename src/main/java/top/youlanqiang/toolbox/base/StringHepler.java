@@ -17,9 +17,9 @@ import top.youlanqiang.toolbox.collection.Pair;
  *         created in 2022/12/03 09:56
  * 
  */
-public final class ToStringHepler {
+public final class StringHepler {
 
-	private ToStringHepler() {
+	private StringHepler() {
 	}
 
 	/**

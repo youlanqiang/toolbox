@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 集合Reader类
+ * 集合Reader类,该类不是线程安全的,在多线程环境中不要使用.
  * 
  * @author youlanqiang
  */
@@ -42,6 +42,11 @@ public class ListReader<T> {
         return list.get(pos++);
     }
 
+    public void back() {
+        // 确保不会出现负数下标
+        this.pos = Math.max(0, --pos);
+    }
+
     public boolean hasMore() {
         return pos < list.size();
     }
@@ -50,8 +55,12 @@ public class ListReader<T> {
         return list.size();
     }
 
+    public boolean isEmpty() {
+        return list == null || list.isEmpty();
+    }
+
     @Override
     public String toString() {
-        return ToStringHepler.listToString(list, "[", "]", ",");
+        return StringHepler.listToString(list, "[", "]", ",");
     }
 }

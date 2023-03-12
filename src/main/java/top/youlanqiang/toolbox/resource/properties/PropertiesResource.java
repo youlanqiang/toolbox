@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
-import top.youlanqiang.toolbox.base.ToStringHepler;
+import top.youlanqiang.toolbox.base.StringHepler;
 
 /**
  * Properties文件读取类
@@ -445,9 +445,9 @@ public class PropertiesResource {
     @Override
     public String toString() {
         if (mode == PropertiesMode.MAP) {
-            return ToStringHepler.mapToString(map, ",", "=");
+            return StringHepler.mapToString(map, ",", "=");
         } else {
-            return ToStringHepler.mapToString(properties, ",", "=");
+            return StringHepler.mapToString(properties, ",", "=");
         }
     }
 

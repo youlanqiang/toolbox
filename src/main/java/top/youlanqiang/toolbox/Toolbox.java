@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import top.youlanqiang.toolbox.base.EqualsHepler;
 import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
-import top.youlanqiang.toolbox.base.ToStringHepler;
+import top.youlanqiang.toolbox.base.StringHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler.ObjectCastHepler;
 import top.youlanqiang.toolbox.collection.Pair;
 import top.youlanqiang.toolbox.collection.Triple;
@@ -96,7 +96,7 @@ public final class Toolbox {
      * @return 格式化后的格式化字符串
      */
     public static String format(String pattern, Object... args) {
-        return ToStringHepler.format(pattern, args);
+        return StringHepler.format(pattern, args);
     }
 
     /**
@@ -105,8 +105,8 @@ public final class Toolbox {
      * @param obj 构造器的默认对象
      * @return 对象字符串构造器
      */
-    public static ToStringHepler.ObjectToStringBuilder toString(Object obj) {
-        return ToStringHepler.build(obj);
+    public static StringHepler.ObjectToStringBuilder toString(Object obj) {
+        return StringHepler.build(obj);
     }
 
     /**
@@ -115,8 +115,8 @@ public final class Toolbox {
      * @param className 类型的名称
      * @return 对象字符串构造器
      */
-    public static ToStringHepler.ObjectToStringBuilder toString(String className) {
-        return ToStringHepler.build(className);
+    public static StringHepler.ObjectToStringBuilder toString(String className) {
+        return StringHepler.build(className);
     }
 
     /**
@@ -125,8 +125,8 @@ public final class Toolbox {
      * @param clazz 类型
      * @return 对象字符串构造器
      */
-    public static ToStringHepler.ObjectToStringBuilder toString(Class<?> clazz) {
-        return ToStringHepler.build(clazz);
+    public static StringHepler.ObjectToStringBuilder toString(Class<?> clazz) {
+        return StringHepler.build(clazz);
     }
 
     /**
@@ -138,7 +138,7 @@ public final class Toolbox {
      * @return string
      */
     public static String toString(Map<?, ?> map, String separator, String keyValueSeparator) {
-        return ToStringHepler.mapToString(map, separator, keyValueSeparator);
+        return StringHepler.mapToString(map, separator, keyValueSeparator);
     }
 
     /**
@@ -151,7 +151,7 @@ public final class Toolbox {
      * @return 转换后的字符串
      */
     public static String toString(Collection<?> list, String open, String close, String separator) {
-        return ToStringHepler.listToString(list, open, close, separator);
+        return StringHepler.listToString(list, open, close, separator);
     }
 
     /**

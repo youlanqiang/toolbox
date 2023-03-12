@@ -15,13 +15,23 @@ import top.youlanqiang.toolbox.resource.json.JsonTokenizer.JsonToken;
 @DisplayName("JsonTokenizer测试类")
 public class JsonTokenizerTest {
 
+    final String jsonObjectStr = """
+            {"str":"hello,toolbox","num":-1.11E10,"bool":false,"null":null}
+            """;
+
+    @DisplayName("测试JsonObject反序列化是否正确")
+    @Test
+    public void testJsonObjectParser() throws IOException {
+        JsonParser jsonParser = new JsonParser(jsonObjectStr);
+        JsonObject jsonObject = jsonParser.parseJsonObject();
+        assertEquals(false, jsonObject.get("bool"));
+    }
+
     @DisplayName("通过判断token数量验证词法分析是否正确")
     @Test
     public void testTokenizer() throws IOException {
-        String json = """
-                {"str":"hello,toolbox","num":-1.11E10,"bool":false,"null":null}
-                """;
-        CharReader reader = new CharReader(new StringReader(json));
+
+        CharReader reader = new CharReader(new StringReader(jsonObjectStr));
         ListReader<JsonToken> tokens = JsonTokenizer.tokenize(reader);
         assertEquals(18, tokens.size());
     }

@@ -129,4 +129,9 @@ public class JsonArray implements List<Object> {
         return list.subList(fromIndex, toIndex);
     }
 
+    @Override
+    public String toString() {
+        return null;
+    }
+
 }

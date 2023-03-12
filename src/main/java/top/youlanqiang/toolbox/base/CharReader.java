@@ -93,7 +93,7 @@ public class CharReader {
 
     @Override
     public String toString() {
-        return ToStringHepler
+        return StringHepler
                 .build(getClass())
                 .put("buffer", buffer)
                 .toString();
