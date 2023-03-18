@@ -3,6 +3,8 @@ package top.youlanqiang.toolbox;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
@@ -340,6 +342,24 @@ public final class Toolbox {
      */
     public static void batchInterrupt(Stream<Thread> stream) {
         ThreadHepler.batchInterrupt(stream);
+    }
+
+    /**
+     * 执行flush和close操作，并忽略掉可能发生的异常
+     * 
+     * @param outputStream 实现了OutputStream接口的对象
+     */
+    public static void flushAndClose(OutputStream outputStream) {
+        IOHepler.flushAndClose(outputStream);
+    }
+
+    /**
+     * 执行flush和close操作，并忽略掉可能发生的异常
+     * 
+     * @param writer 实现了Writer接口的对象
+     */
+    public static void flushAndClose(Writer writer) {
+        IOHepler.flushAndClose(writer);
     }
 
     /**
