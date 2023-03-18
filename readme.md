@@ -10,6 +10,14 @@ toolbox是一个轻量java类库，jdk最低要求为17，封装了一些jdk没�
     //打印格式化字符串
     Toolbox.println("this is {}", "toolbox");
 ```
+
+## 待完成的特性
+  - [ ] JSON对象的反序列化
+  - [ ] CSVResource的支持
+  - [ ] AreaCodeHepler支持对china区域代码的快速查询
+  - [ ] TreeHepler支持对TreeNode快速构建Tree对象
+
+
 ## 依赖
 - JDK17或更高
 - 无其他依赖
