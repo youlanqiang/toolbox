@@ -3,6 +3,8 @@ package top.youlanqiang.toolbox.base;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -22,6 +24,35 @@ import java.util.zip.ZipOutputStream;
  * 
  */
 public final class IOHepler {
+
+    /**
+     * 执行flush和close操作，并忽略掉可能发生的异常
+     * 
+     * @param writer 实现了Writer接口的对象
+     */
+    public static void flushAndClose(Writer writer) {
+        try {
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            // ignore exception
+        }
+    }
+
+    /**
+     * 执行flush和close操作，并忽略掉可能发生的异常
+     * 
+     * @param outputStream 实现了OutputStream接口的对象
+     */
+    public static void flushAndClose(OutputStream outputStream) {
+        try {
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            // ignore exception
+        }
+
+    }
 
     /**
      * 执行close操作，并忽略掉可能发生的异常
