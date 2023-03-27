@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -340,6 +342,40 @@ public final class Toolbox {
      */
     public static void batchInterrupt(Stream<Thread> stream) {
         ThreadHepler.batchInterrupt(stream);
+    }
+
+    /**
+     * 新建一个命名线程工厂
+     * 
+     * @param threadPoolName 线程池名称
+     * @param daemon         是否为守护线程
+     * @return 命名线程工厂
+     */
+    public static ThreadFactory newNamedThreadFactory(String threadPoolName, boolean daemon) {
+        return ThreadHepler.newNamedThreadFactory(threadPoolName, daemon);
+    }
+
+    /**
+     * 支持自定义任务队列数量，防止出现OOM
+     * 
+     * @param threads        固定线程数量
+     * @param queueSize      任务队列数量
+     * @param threadPoolName 线程池名称
+     * @return 新建线程池
+     */
+    public static ExecutorService newFixedThreadPool(int threads, int queueSize, String threadPoolName) {
+        return ThreadHepler.newFixedThreadPool(threads, queueSize, threadPoolName);
+    }
+
+    /**
+     * 支持自定义最大线程数量，防止出现CPU100%情况
+     * 
+     * @param maxThreads     最大线程数量
+     * @param threadPoolName 线程池名称
+     * @return 新建线程池
+     */
+    public static ExecutorService newCachedThreadPool(int maxThreads, String threadPoolName) {
+        return ThreadHepler.newCachedThreadPool(maxThreads, threadPoolName);
     }
 
     /**

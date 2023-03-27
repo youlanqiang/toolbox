@@ -1,6 +1,12 @@
 package top.youlanqiang.toolbox.concurrent;
 
 import java.util.Collection;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -90,6 +96,48 @@ public final class ThreadHepler {
      */
     public static void batchInterrupt(Stream<Thread> stream) {
         stream.forEach(Thread::interrupt);
+    }
+
+    /**
+     * 新建一个命名线程工厂
+     * 
+     * @param threadPoolName 线程池名称
+     * @param daemon         是否为守护线程
+     * @return 命名线程工厂
+     */
+    public static ThreadFactory newNamedThreadFactory(String threadPoolName, boolean daemon) {
+        return new NamedThreadFactory(threadPoolName, false);
+    }
+
+    /**
+     * {@link Executors#newFixedThreadPool }
+     * 支持自定义任务队列数量，防止出现OOM
+     * 
+     * @param threads        固定线程数量
+     * @param queueSize      任务队列数量
+     * @param threadPoolName 线程池名称
+     * @return 新建线程池
+     */
+    public static ExecutorService newFixedThreadPool(int threads, int queueSize, String threadPoolName) {
+        return new ThreadPoolExecutor(threads, threads,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(queueSize),
+                new NamedThreadFactory(threadPoolName, false));
+    }
+
+    /**
+     * {@link Executors#newCachedThreadPool }
+     * 支持自定义最大线程数量，防止出现CPU100%情况
+     * 
+     * @param maxThreads     最大线程数量
+     * @param threadPoolName 线程池名称
+     * @return 新建线程池
+     */
+    public static ExecutorService newCachedThreadPool(int maxThreads, String threadPoolName) {
+        return new ThreadPoolExecutor(0, maxThreads,
+                60L, TimeUnit.SECONDS,
+                new SynchronousQueue<Runnable>(),
+                new NamedThreadFactory(threadPoolName, false));
     }
 
 }
