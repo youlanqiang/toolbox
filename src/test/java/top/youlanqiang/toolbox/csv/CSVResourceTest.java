@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import top.youlanqiang.toolbox.base.IOHepler;
-import top.youlanqiang.toolbox.base.AreaCodeHepler.ChinaAreaCode;
+import top.youlanqiang.toolbox.base.ChinaAreaHepler.ChinaAreaCode;
 
 @DisplayName("CSVResourceTest测试类")
 public class CSVResourceTest {

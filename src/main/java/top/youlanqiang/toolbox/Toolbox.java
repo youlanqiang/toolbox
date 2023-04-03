@@ -47,7 +47,7 @@ public final class Toolbox {
      * @param right  右值
      * @return 不可变Triple对象
      */
-    public static <L, M, R> Triple<L, M, R> ofTriple(L left, M middle, R right) {
+    public static <L, M, R> Triple<L, M, R> of(L left, M middle, R right) {
         return Triple.of(left, middle, right);
     }
 
@@ -60,7 +60,7 @@ public final class Toolbox {
      * @param right 右值
      * @return ImmutablePair
      */
-    public static <L, R> Pair<L, R> ofPair(L left, R right) {
+    public static <L, R> Pair<L, R> of(L left, R right) {
         return Pair.of(left, right);
     }
 
@@ -90,6 +90,17 @@ public final class Toolbox {
      */
     public static void println(String pattern, Object... args) {
         System.out.println(format(pattern, args));
+    }
+
+    /**
+     * 去掉头尾指定的字符串
+     * 
+     * @param str      字符串
+     * @param splitter 指定字符串
+     * @return 去掉头尾中包含指定字符串后的字符串
+     */
+    public static String trimBothEndsChars(String str, String splitter) {
+        return StringHepler.trimBothEndsChars(str, splitter);
     }
 
     /**
