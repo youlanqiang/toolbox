@@ -5,4 +5,4 @@
  * 
  */
 
-package top.youlanqiang.toolbox.resource.csv;
+package top.youlanqiang.toolbox.csv;

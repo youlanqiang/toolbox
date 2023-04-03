@@ -5,4 +5,4 @@
  * 
  */
 
-package top.youlanqiang.toolbox.resource.properties;
+package top.youlanqiang.toolbox.properties;

@@ -22,7 +22,7 @@ import top.youlanqiang.toolbox.base.ObjectHepler.ObjectCastHepler;
 import top.youlanqiang.toolbox.collection.Pair;
 import top.youlanqiang.toolbox.collection.Triple;
 import top.youlanqiang.toolbox.concurrent.ThreadHepler;
-import top.youlanqiang.toolbox.resource.properties.PropertiesResource;
+import top.youlanqiang.toolbox.properties.PropertiesResource;
 
 /**
  * 工具类常用方法的集合

@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.resource.json;
+package top.youlanqiang.toolbox.json;
 
 /**
  * JsonParse失败异常

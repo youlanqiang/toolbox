@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import top.youlanqiang.toolbox.resource.properties.PropertiesResource;
+import top.youlanqiang.toolbox.properties.PropertiesResource;
 
 @DisplayName("PropertiesResource测试类")
 public class PropertiesResourceTest {

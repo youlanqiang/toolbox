@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.resource.properties;
+package top.youlanqiang.toolbox.properties;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +42,10 @@ public class PropertiesResource {
      */
     private PropertiesMode mode = PropertiesMode.FILE;
 
-    private Charset charset = StandardCharsets.UTF_8;
+    /**
+     * properties读取字符集
+     */
+    private Charset charset;
 
     /**
      * 读取file对应的properties文件

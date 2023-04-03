@@ -97,6 +97,18 @@ public final class StringHepler {
 	}
 
 	/**
+	 * 去掉头尾指定的字符串
+	 * 
+	 * @param str      字符串
+	 * @param splitter 指定字符串
+	 * @return 去掉头尾中包含指定字符串后的字符串
+	 */
+	public static String trimBothEndsChars(String str, String splitter) {
+		String regex = "^" + splitter + "*|" + splitter + "*$";
+		return str.replaceAll(regex, "");
+	}
+
+	/**
 	 * 创建内部类ObjectToStringBuilder，传入obj对象会将对象class的simpleName设置为默认名称
 	 * 
 	 * @param obj 构造器的默认对象

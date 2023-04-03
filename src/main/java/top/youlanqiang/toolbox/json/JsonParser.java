@@ -1,11 +1,11 @@
-package top.youlanqiang.toolbox.resource.json;
+package top.youlanqiang.toolbox.json;
 
 import java.io.IOException;
 import java.io.StringReader;
 
 import top.youlanqiang.toolbox.base.CharReader;
 import top.youlanqiang.toolbox.base.ListReader;
-import top.youlanqiang.toolbox.resource.json.JsonTokenizer.JsonToken;
+import top.youlanqiang.toolbox.json.JsonTokenizer.JsonToken;
 
 /**
  * JsonTokenizer json语法分析器

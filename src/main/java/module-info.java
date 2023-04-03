@@ -12,5 +12,5 @@ module toolbox {
     exports top.youlanqiang.toolbox.base;
     exports top.youlanqiang.toolbox.collection;
     exports top.youlanqiang.toolbox.concurrent;
-    exports top.youlanqiang.toolbox.resource.properties;
+    exports top.youlanqiang.toolbox.properties;
 }
