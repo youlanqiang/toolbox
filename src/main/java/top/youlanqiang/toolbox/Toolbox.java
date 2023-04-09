@@ -14,10 +14,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import top.youlanqiang.toolbox.base.ChinaAreaHepler;
 import top.youlanqiang.toolbox.base.EqualsHepler;
 import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
 import top.youlanqiang.toolbox.base.StringHepler;
+import top.youlanqiang.toolbox.base.ChinaAreaHepler.ChinaAreaCode;
 import top.youlanqiang.toolbox.base.ObjectHepler.ObjectCastHepler;
 import top.youlanqiang.toolbox.collection.Pair;
 import top.youlanqiang.toolbox.collection.Triple;
@@ -34,6 +36,16 @@ import top.youlanqiang.toolbox.properties.PropertiesResource;
 public final class Toolbox {
 
     private Toolbox() {
+    }
+
+    /**
+     * 根据区域代码获取区域信息
+     * 
+     * @param code 区域代码 如:330000
+     * @return 区域详细信息，包含区域名称等信息
+     */
+    public static ChinaAreaCode getAreaByCode(String code) {
+        return ChinaAreaHepler.getAreaByCode(code);
     }
 
     /**
