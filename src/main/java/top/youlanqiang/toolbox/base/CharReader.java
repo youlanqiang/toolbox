@@ -18,6 +18,11 @@ public class CharReader {
 
     private int size = 0;
 
+    /**
+     * CharReader构造函数
+     * 
+     * @param reader reader对象
+     */
     public CharReader(Reader reader) {
         this.reader = reader;
         this.buffer = new char[PACKAGE_CONST.DEFAULT_BUFFER_SIZE];
@@ -39,8 +44,8 @@ public class CharReader {
     /**
      * 返回pos下标处的字符，并将pos+1
      * 
-     * @return
-     * @throws IOException
+     * @return pos下标处的字符
+     * @throws IOException read的io异常
      */
     public char next() throws IOException {
         if (!hasMore()) {
@@ -53,8 +58,8 @@ public class CharReader {
      * 判断buffer是否还有未读的字符，如果没有则先{@link #fillBuffer}
      * 继续判断是否存在未读的字符
      * 
-     * @return
-     * @throws IOException
+     * @return 是否存在未读的字符
+     * @throws IOException read的io异常
      */
     public boolean hasMore() throws IOException {
         if (pos < size) {
@@ -78,7 +83,7 @@ public class CharReader {
     /**
      * 填充buffer,并重置pos和size
      * 
-     * @throws IOException
+     * @throws IOException read的io异常
      */
     void fillBuffer() throws IOException {
         int n = reader.read(buffer);

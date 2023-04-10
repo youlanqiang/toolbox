@@ -6,10 +6,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * JsonArray
+ * 
+ * @author youlanqiang
+ */
 public class JsonArray implements List<Object> {
 
     private List<Object> list;
 
+    /**
+     * 创建一个空的JsonArray
+     */
     public JsonArray() {
         this.list = new ArrayList<>();
     }

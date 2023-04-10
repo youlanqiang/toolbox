@@ -7,12 +7,20 @@ import top.youlanqiang.toolbox.base.ListReader;
 import top.youlanqiang.toolbox.base.ObjectHepler;
 
 /**
+ * Json词法分析，这个类是线程安全的
+ * 
  * @author youlanqiang
  */
-public class JsonTokenizer {
+public final class JsonTokenizer {
 
+    /**
+     * 默认单例模式
+     */
     public static final JsonTokenizer INSTANCE = new JsonTokenizer();
 
+    /**
+     * json词法
+     */
     public record JsonToken(JsonTokenType type, String value) {
     };
 
@@ -251,8 +259,8 @@ public class JsonTokenizer {
      * 读取浮点数字符串
      * 
      * @param charReader 字符串流
-     * @return
-     * @throws IOException
+     * @return 浮点数字符串
+     * @throws IOException reader读取异常
      */
     public String readFracAndExp(CharReader charReader) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -297,8 +305,8 @@ public class JsonTokenizer {
      * 处理科学计数法
      * 
      * @param charReader 字符串流
-     * @return
-     * @throws IOException
+     * @return 科学计数字符串
+     * @throws IOException reader读取异常
      */
     public String readExp(CharReader charReader) throws IOException {
         StringBuilder sb = new StringBuilder();

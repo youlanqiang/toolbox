@@ -8,6 +8,7 @@ import top.youlanqiang.toolbox.base.LambdaStringBuilder;
 
 /**
  * Json对象转Json字符串
+ * todo 这个类的功能未实现
  * 
  * @author youlanqiang
  */
@@ -24,16 +25,32 @@ public class JsonWriter {
 
     private AbstractLambdaStringBuilder stringBuilder = new LambdaStringBuilder();
 
+    /**
+     * Json对象写入
+     * 
+     * @param object json对象
+     */
     public JsonWriter(JsonObject object) {
         this.object = object;
         this.type = 0;
     }
 
+    /**
+     * Json数组写入
+     * 
+     * @param array json数组
+     */
     public JsonWriter(JsonArray array) {
         this.array = array;
         this.type = 1;
     }
 
+    /**
+     * 将json字符串写入Writer对象
+     * 
+     * @param writer writer对象
+     * @throws IOException 写入异常
+     */
     public void write(Writer writer) throws IOException {
         if (type == 0 && object == null) {
             writer.write("{}");

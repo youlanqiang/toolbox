@@ -14,6 +14,9 @@ public class JsonObject implements Map<String, Object> {
 
     private Map<String, Object> map;
 
+    /**
+     * 创建一个内部map为空的JsonObject对象
+     */
     public JsonObject() {
         this.map = new HashMap<>();
     }

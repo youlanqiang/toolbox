@@ -14,6 +14,8 @@ import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.StringHepler;
 
 /**
+ * CSVResource读取辅助类，在不使用时需要调用Close方法，释放流。
+ * 
  * @author youlanqiang
  */
 public class CSVResource implements Closeable {
@@ -30,23 +32,52 @@ public class CSVResource implements Closeable {
      */
     private Charset charset;
 
+    /**
+     * CSVResource构造对象
+     * 
+     * @param inputStream csv文件流
+     */
     public CSVResource(InputStream inputStream) {
         this(inputStream, StandardCharsets.UTF_8);
     }
 
+    /**
+     * CSVResource构造对象
+     * 
+     * @param inputStream csv文件流
+     * @param charset     编码字符集
+     */
     public CSVResource(InputStream inputStream, Charset charset) {
         this.charset = charset;
         this.reader = new BufferedReader(new InputStreamReader(inputStream, charset));
     }
 
+    /**
+     * 当前CSV的编码字符集
+     * 
+     * @return 编码字符集
+     */
     public Charset getCharset() {
         return this.charset;
     }
 
+    /**
+     * 获取CSV文件中的所有行
+     * 
+     * @return 字符串行
+     */
     public List<String> readAllLines() {
         return this.reader.lines().toList();
     }
 
+    /**
+     * 将CSV文件中的字符串转换为对象
+     * 
+     * @param <T>        转换的对象泛型
+     * @param function   对象转换器
+     * @param skipHeader 是否跳过第一行
+     * @return 列表
+     */
     public <T> List<T> cover(Function<String[], T> function, boolean skipHeader) {
         var stream = skipHeader ? this.reader.lines().skip(1) : this.reader.lines();
         return stream
@@ -55,12 +86,22 @@ public class CSVResource implements Closeable {
                 .map(function).toList();
     }
 
+    /**
+     * 关闭CSVResource文件流
+     */
     public void close() {
         IOHepler.close(reader);
     }
 
+    /**
+     * CSV column字符反序列化
+     */
     public static class CSVStringColmunCover implements Function<String, String[]> {
 
+        /**
+         * 将CSV行解析为字符串数组，如果是字符串类型则删除两侧的标点符号
+         * todo 这里存在一个bug
+         */
         @Override
         public String[] apply(String t) {
             if (t == null) {

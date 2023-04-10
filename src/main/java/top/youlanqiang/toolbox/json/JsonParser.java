@@ -16,14 +16,30 @@ public class JsonParser {
 
     private ListReader<JsonToken> tokens;
 
+    /**
+     * JsonParser
+     * 
+     * @param tokens 词法列表
+     */
     public JsonParser(ListReader<JsonToken> tokens) {
         this.tokens = tokens;
     }
 
+    /**
+     * JsonParser
+     * 
+     * @param jsonStr json字符串
+     * @throws IOException json解析失败
+     */
     public JsonParser(String jsonStr) throws IOException {
         this(JsonTokenizer.tokenize(new CharReader(new StringReader(jsonStr))));
     }
 
+    /**
+     * 将tokens词法转换为JsonArray
+     * 
+     * @return JsonArray
+     */
     public JsonArray parseJsonArray() {
         JsonArray jsonArray = new JsonArray();
         if (tokens == null || tokens.isEmpty()) {
