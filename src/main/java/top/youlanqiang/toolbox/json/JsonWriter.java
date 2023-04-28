@@ -2,6 +2,8 @@ package top.youlanqiang.toolbox.json;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.HashMap;
+import java.util.List;
 
 import top.youlanqiang.toolbox.base.AbstractLambdaStringBuilder;
 import top.youlanqiang.toolbox.base.LambdaStringBuilder;
@@ -14,35 +16,18 @@ import top.youlanqiang.toolbox.base.LambdaStringBuilder;
  */
 public class JsonWriter {
 
-    private JsonObject object;
-
-    private JsonArray array;
-
-    /**
-     * json类型 0=JsonObject 1=JsonArray
-     */
-    private final int type;
+    private Object root;
 
     private AbstractLambdaStringBuilder stringBuilder = new LambdaStringBuilder();
-
-    /**
-     * Json对象写入
-     * 
-     * @param object json对象
-     */
-    public JsonWriter(JsonObject object) {
-        this.object = object;
-        this.type = 0;
-    }
 
     /**
      * Json数组写入
      * 
      * @param array json数组
      */
-    public JsonWriter(JsonArray array) {
-        this.array = array;
-        this.type = 1;
+    public JsonWriter(Object object) {
+        this.root = object;
+
     }
 
     /**
@@ -52,33 +37,33 @@ public class JsonWriter {
      * @throws IOException 写入异常
      */
     public void write(Writer writer) throws IOException {
-        if (type == 0 && object == null) {
-            writer.write("{}");
-        } else if (type == 1 && array == null) {
-            writer.write("[]");
+        if (root == null) {
+            throw new IOException("json target is null.");
+        }
+        if (root instanceof HashMap<?, ?> map) {
+            writeJsonObjectString(map);
+        } else if (root instanceof List<?> list) {
+            writeJsonArrayString(list);
         } else {
-            writer.write(toJsonString());
+            writeJsonObjectString(root);
         }
 
         writer.close();
     }
 
-    private String toJsonString() {
-        if (type == 0) {
-            writeJsonObjectString(object);
-        } else {
-            writeJsonArrayString(array);
-        }
-        return stringBuilder.toString();
-    }
-
-    private void writeJsonObjectString(JsonObject object) {
+    private void writeJsonObjectString(HashMap<?, ?> object) {
         stringBuilder.append("{")
 
                 .append("}");
     }
 
-    private void writeJsonArrayString(JsonArray jsonArray) {
+    private void writeJsonObjectString(Object object) {
+        stringBuilder.append("{")
+
+                .append("}");
+    }
+
+    private void writeJsonArrayString(List<?> jsonArray) {
         stringBuilder.append("[")
                 .append("]");
     }

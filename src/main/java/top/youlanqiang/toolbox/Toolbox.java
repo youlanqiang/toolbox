@@ -316,6 +316,16 @@ public final class Toolbox {
     }
 
     /**
+     * 批量执行Runnable
+     * 
+     * @param threadSize 执行次数
+     * @param runnable   runnable对象
+     */
+    public static void run(int threadSize, Runnable runnable) {
+        ThreadHepler.run(threadSize, runnable);
+    }
+
+    /**
      * 线程批量启动
      * 
      * @param threads 线程数组

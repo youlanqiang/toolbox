@@ -45,6 +45,22 @@ public final class ThreadHepler {
     }
 
     /**
+     * 批量执行Runnable
+     * 
+     * @param threadSize 执行次数
+     * @param runnable   runnable对象
+     */
+    public static void run(int threadSize, Runnable runnable) {
+        if (threadSize > 0) {
+            var executor = newFixedThreadPool(threadSize, threadSize, "test");
+            for (int i = 0; i < threadSize; i++) {
+                executor.execute(runnable);
+            }
+            executor.shutdown();
+        }
+    }
+
+    /**
      * 线程批量启动
      * 
      * @param threads 线程数组
@@ -112,6 +128,7 @@ public final class ThreadHepler {
     /**
      * {@link Executors#newFixedThreadPool }
      * 支持自定义任务队列数量，防止出现OOM
+     * 创建一个固定大小的线程池，可控制线程最大并发数，超出的线程会在队列中等待。
      * 
      * @param threads        固定线程数量
      * @param queueSize      任务队列数量
@@ -128,6 +145,7 @@ public final class ThreadHepler {
     /**
      * {@link Executors#newCachedThreadPool }
      * 支持自定义最大线程数量，防止出现CPU100%情况
+     * 创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，否则新建线程。
      * 
      * @param maxThreads     最大线程数量
      * @param threadPoolName 线程池名称
