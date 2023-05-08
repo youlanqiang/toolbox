@@ -118,12 +118,12 @@ public final class Toolbox {
     /**
      * 使用默认的占位符 {} 格式化字符串内容
      * 
-     * @param pattern 字符串模版
-     * @param args    参数列表
+     * @param text 字符串模版
+     * @param args 参数列表
      * @return 格式化后的格式化字符串
      */
-    public static String format(String pattern, Object... args) {
-        return StringHepler.format(pattern, args);
+    public static String format(String text, Object... args) {
+        return StringHepler.format(text, args);
     }
 
     /**
