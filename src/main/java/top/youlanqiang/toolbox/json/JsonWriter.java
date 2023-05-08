@@ -2,11 +2,13 @@ package top.youlanqiang.toolbox.json;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 import top.youlanqiang.toolbox.base.AbstractLambdaStringBuilder;
 import top.youlanqiang.toolbox.base.LambdaStringBuilder;
+import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.base.ReflectHepler;
 
 /**
  * Json对象转Json字符串
@@ -16,8 +18,6 @@ import top.youlanqiang.toolbox.base.LambdaStringBuilder;
  */
 public class JsonWriter {
 
-    private Object root;
-
     private AbstractLambdaStringBuilder stringBuilder = new LambdaStringBuilder();
 
     /**
@@ -25,9 +25,11 @@ public class JsonWriter {
      * 
      * @param array json数组
      */
-    public JsonWriter(Object object) {
-        this.root = object;
+    public JsonWriter() {
+    }
 
+    public void flush() {
+        this.stringBuilder.clean();
     }
 
     /**
@@ -36,36 +38,66 @@ public class JsonWriter {
      * @param writer writer对象
      * @throws IOException 写入异常
      */
-    public void write(Writer writer) throws IOException {
-        if (root == null) {
+    public synchronized void write(Object object, Writer writer) throws IOException {
+        if (object == null) {
             throw new IOException("json target is null.");
         }
-        if (root instanceof HashMap<?, ?> map) {
-            writeJsonObjectString(map);
-        } else if (root instanceof List<?> list) {
-            writeJsonArrayString(list);
-        } else {
-            writeJsonObjectString(root);
-        }
-
+        writeObjectString(object);
         writer.close();
     }
 
-    private void writeJsonObjectString(HashMap<?, ?> object) {
-        stringBuilder.append("{")
-
-                .append("}");
+    private void writeObjectString(Object object) {
+        if (object instanceof Map map) {
+            writeJsonObjectString(map);
+        } else if (object instanceof Collection list) {
+            writeJsonArrayString(list);
+        } else {
+            writeJavaObjectString(object);
+        }
     }
 
-    private void writeJsonObjectString(Object object) {
-        stringBuilder.append("{")
+    private void writeJsonObjectString(Map<?, ?> map) {
+        stringBuilder.append("{");
 
-                .append("}");
+        map.forEach((k, v) -> {
+            stringBuilder.append("\"", k.toString(), "\"").append(":");
+            writeObjectString(v);
+            stringBuilder.append(",");
+        });
+
+        // 删除最后一个,分号
+        stringBuilder.deleteLastChar().append("}");
     }
 
-    private void writeJsonArrayString(List<?> jsonArray) {
-        stringBuilder.append("[")
-                .append("]");
+    private void writeJsonArrayString(Collection<?> jsonArray) {
+        stringBuilder.append("[");
+        jsonArray.forEach(item -> {
+            writeObjectString(item);
+            stringBuilder.append(",");
+        });
+        // 删除最后一个,分号
+        stringBuilder.deleteLastChar().append("]");
+    }
+
+    private void writeJavaObjectString(Object object) {
+        if (object == null) {
+            stringBuilder.append("null");
+        }
+        if (object instanceof CharSequence charSequence) {
+            // 表示是字符串类型
+            stringBuilder.append(charSequence.toString());
+        } else if (object.getClass().isPrimitive()) {
+            // 表示是java基本类型直接toString即可
+            stringBuilder.append(object.toString());
+        } else {
+            // 使用反射对象
+            var map = ReflectHepler.getPublicGetterMap(object);
+            if (ObjectHepler.isEmpty(map)) {
+                stringBuilder.append(object.toString());
+            } else {
+                writeJsonObjectString(map);
+            }
+        }
     }
 
 }

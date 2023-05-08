@@ -105,6 +105,47 @@ public final class Toolbox {
     }
 
     /**
+     * 判断字符串是否为null
+     * 字符串为"null",也会返回true
+     * 
+     * @param str 判断对象
+     * @return true or false
+     */
+    public static boolean isNullString(String str) {
+        return StringHepler.isNullString(str);
+    }
+
+    /**
+     * 判断字符是否是空白符
+     * 
+     * @param ch 字符
+     * @return 是空白符，则返回true
+     */
+    public static boolean isWhiteSpace(Character ch) {
+        return StringHepler.isWhiteSpace(ch);
+    }
+
+    /**
+     * 判断字符是否是数字
+     * 
+     * @param ch 字符
+     * @return 是数字，则返回true
+     */
+    public static boolean isDigit(Character ch) {
+        return StringHepler.isDigit(ch);
+    }
+
+    /**
+     * 判断字符是否在十六进制范围
+     * 
+     * @param ch 字符
+     * @return 是十六进制范围字符，则返回true
+     */
+    public static boolean isHex(Character ch) {
+        return StringHepler.isHex(ch);
+    }
+
+    /**
      * 去掉头尾指定的字符串
      * 
      * @param str      字符串
@@ -229,47 +270,6 @@ public final class Toolbox {
      */
     public static boolean isEmpty(Collection<Object> collection) {
         return ObjectHepler.isEmpty(collection);
-    }
-
-    /**
-     * 判断字符串是否为null
-     * 字符串为"null",也会返回true
-     * 
-     * @param str 判断对象
-     * @return true or false
-     */
-    public static boolean isNullString(String str) {
-        return ObjectHepler.isNullString(str);
-    }
-
-    /**
-     * 判断字符是否是空白符
-     * 
-     * @param ch 字符
-     * @return 是空白符，则返回true
-     */
-    public static boolean isWhiteSpace(Character ch) {
-        return ObjectHepler.isWhiteSpace(ch);
-    }
-
-    /**
-     * 判断字符是否是数字
-     * 
-     * @param ch 字符
-     * @return 是数字，则返回true
-     */
-    public static boolean isDigit(Character ch) {
-        return ObjectHepler.isDigit(ch);
-    }
-
-    /**
-     * 判断字符是否在十六进制范围
-     * 
-     * @param ch 字符
-     * @return 是十六进制范围字符，则返回true
-     */
-    public static boolean isHex(Character ch) {
-        return ObjectHepler.isHex(ch);
     }
 
     /**

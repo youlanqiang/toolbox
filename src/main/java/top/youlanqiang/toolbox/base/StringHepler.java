@@ -24,6 +24,66 @@ public final class StringHepler {
 	private StringHepler() {
 	}
 
+	/**
+	 * 字符串首位改小写
+	 * 
+	 * @param str 字符串
+	 * @return 首字符转小写
+	 */
+	public static String lowerFirst(String str) {
+		char[] cs = str.toCharArray();
+		cs[0] += 32;
+		return String.valueOf(cs);
+	}
+
+	/**
+	 * 判断字符串是否为null
+	 * 字符串为"null",也会返回true
+	 * 
+	 * @param str 判断对象
+	 * @return true or false
+	 */
+	public static boolean isNullString(CharSequence str) {
+		if (str == null || str.length() == 0) {
+			return true;
+		}
+		if (str.toString().trim().equalsIgnoreCase("null")) {
+			return true;
+		}
+		return false;
+
+	}
+
+	/**
+	 * 判断字符是否是空白符
+	 * 
+	 * @param ch 字符
+	 * @return 是空白符，则返回true
+	 */
+	public static boolean isWhiteSpace(Character ch) {
+		return (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n');
+	}
+
+	/**
+	 * 判断字符是否是数字,字符1的ascii码是49
+	 * 
+	 * @param ch 字符
+	 * @return 是数字，则返回true
+	 */
+	public static boolean isDigit(Character ch) {
+		return '0' <= ch && ch <= '9';
+	}
+
+	/**
+	 * 判断字符是否在十六进制范围
+	 * 
+	 * @param ch 字符
+	 * @return 是十六进制范围字符，则返回true
+	 */
+	public static boolean isHex(Character ch) {
+		return ('0' <= ch && ch <= '9') || ('a' <= ch && ch <= 'f') || ('A' <= ch && ch <= 'F');
+	}
+
 	private static final GenericTokenParser TOKEN_PARSER = new GenericTokenParser("{", "}");
 
 	/**

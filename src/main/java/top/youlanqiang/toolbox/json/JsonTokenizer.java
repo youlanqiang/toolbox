@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import top.youlanqiang.toolbox.base.CharReader;
 import top.youlanqiang.toolbox.base.ListReader;
-import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.base.StringHepler;
 
 /**
  * Json词法分析，这个类是线程安全的
@@ -55,7 +55,7 @@ public final class JsonTokenizer {
             ch = charReader.next();
 
             // 忽略空字符
-            if (!ObjectHepler.isWhiteSpace(ch)) {
+            if (!StringHepler.isWhiteSpace(ch)) {
                 break;
             }
 
@@ -90,7 +90,7 @@ public final class JsonTokenizer {
         }
 
         // 判断字符是否为0-9,如果是读取数字token
-        if (ObjectHepler.isDigit(ch)) {
+        if (StringHepler.isDigit(ch)) {
             return readNumber(charReader);
         }
 
@@ -183,7 +183,7 @@ public final class JsonTokenizer {
                 if (ch == 'u') {
                     for (int i = 0; i < 4; i++) {
                         ch = charReader.next();
-                        if (ObjectHepler.isHex(ch)) {
+                        if (StringHepler.isHex(ch)) {
                             sb.append(ch);
                         } else {
                             throw new JsonParseException("Invalid character.");
@@ -222,11 +222,11 @@ public final class JsonTokenizer {
             if (ch == '0') {
                 sb.append(ch);
                 sb.append(readFracAndExp(charReader));
-            } else if (ObjectHepler.isDigit(ch)) {
+            } else if (StringHepler.isDigit(ch)) {
                 do {
                     sb.append(ch);
                     ch = charReader.next();
-                } while (ObjectHepler.isDigit(ch));
+                } while (StringHepler.isDigit(ch));
                 if (ch != -1) {
                     charReader.back();
                     // 读取科学计数法，如果不是科学计数法，这步操作什么也不会做
@@ -243,7 +243,7 @@ public final class JsonTokenizer {
             do {
                 sb.append(ch);
                 ch = charReader.next();
-            } while (ObjectHepler.isDigit(ch));
+            } while (StringHepler.isDigit(ch));
 
             if (ch != -1) {
                 charReader.back();
@@ -269,14 +269,14 @@ public final class JsonTokenizer {
             sb.append(ch);
             ch = charReader.next();
 
-            if (!ObjectHepler.isDigit(ch)) {
+            if (!StringHepler.isDigit(ch)) {
                 throw new JsonParseException("Invalid frac.");
             }
 
             do {
                 sb.append(ch);
                 ch = charReader.next();
-            } while (ObjectHepler.isDigit(ch));
+            } while (StringHepler.isDigit(ch));
 
             // 处理科学计数法，如 1.022E5 这种情况
             if (isExp(ch)) {
@@ -314,12 +314,12 @@ public final class JsonTokenizer {
         if (ch == '+' || ch == '-') {
             sb.append(ch);
             ch = charReader.next();
-            if (ObjectHepler.isDigit(ch)) {
+            if (StringHepler.isDigit(ch)) {
 
                 do {
                     sb.append(ch);
                     ch = charReader.next();
-                } while (ObjectHepler.isDigit(ch));
+                } while (StringHepler.isDigit(ch));
 
                 // 如果不是charReader读取结束，即返回-1的情况。
                 // 则charReader回退1位,因为exp读取结束会读取到 , } 这些字符,词法解析还得继续。
@@ -330,11 +330,11 @@ public final class JsonTokenizer {
             } else {
                 throw new JsonParseException("Invalid exp.");
             }
-        } else if (ObjectHepler.isDigit(ch)) {
+        } else if (StringHepler.isDigit(ch)) {
             do {
                 sb.append(ch);
                 ch = charReader.next();
-            } while (ObjectHepler.isDigit(ch));
+            } while (StringHepler.isDigit(ch));
 
             // 如果不是charReader读取结束，即返回-1的情况。
             // 则charReader回退1位,因为exp读取结束会读取到 , } 这些字符,词法解析还得继续。

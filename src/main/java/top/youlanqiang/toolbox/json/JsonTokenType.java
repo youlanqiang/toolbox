@@ -5,49 +5,56 @@ package top.youlanqiang.toolbox.json;
  * 
  * @author youlanqiang
  */
-enum JsonTokenType {
+public enum JsonTokenType {
 
     // {
-    BEGIN_OBJ(1),
+    BEGIN_OBJ(1, "{"),
 
     // }
-    END_OBJ(2),
+    END_OBJ(2, "}"),
 
     // [
-    BEGIN_ARR(4),
+    BEGIN_ARR(4, "["),
 
     // ]
-    END_ARR(8),
+    END_ARR(8, "]"),
 
     // n
-    NULL(16),
+    NULL(16, "null"),
 
     // 0-9
-    NUMBER(32),
+    NUMBER(32, "0"),
 
     // "
-    STR(64),
+    STR(64, "\""),
 
     // t or f
-    BOOLEAN(128),
+    BOOLEAN(128, "false"),
 
     // :
-    SEP_COLON(256),
+    SEP_COLON(256, ":"),
 
     // ,
-    SEP_COMMA(512),
+    SEP_COMMA(512, ","),
 
     // 结束
-    END_DOC(1024);
+    END_DOC(1024, "end");
 
     private Integer code;
 
-    JsonTokenType(Integer code) {
+    private String token;
+
+    JsonTokenType(Integer code, String token) {
         this.code = code;
+        this.token = token;
     }
 
     public int getTokenCode() {
         return code;
+    }
+
+    public String getToken() {
+        return token;
     }
 
 }
