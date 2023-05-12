@@ -2,6 +2,7 @@ package top.youlanqiang.toolbox.json;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class JsonObject implements Map<String, Object> {
      * 创建一个内部map为空的JsonObject对象
      */
     public JsonObject() {
-        this.map = new HashMap<>();
+        this.map = new LinkedHashMap<>();
     }
 
     @Override
@@ -83,8 +84,7 @@ public class JsonObject implements Map<String, Object> {
 
     @Override
     public String toString() {
-        // todo
-        return null;
+        return JsonWriter.INSTANCE.writeToString(map);
     }
 
 }

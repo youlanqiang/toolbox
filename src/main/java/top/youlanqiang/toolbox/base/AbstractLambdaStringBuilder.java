@@ -13,7 +13,7 @@ import java.util.Map;
  *         created in 2022/12/15 23:2
  * 
  */
-public interface AbstractLambdaStringBuilder {
+public interface AbstractLambdaStringBuilder extends CharSequence {
 
     /**
      * 添加obj对象字符串，会判断是collection还是map类型，会执行对应的字符串化操作

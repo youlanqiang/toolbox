@@ -9,15 +9,33 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
-import top.youlanqiang.toolbox.base.LambdaStringBuilder;
+import top.youlanqiang.toolbox.base.AbstractLambdaStringBuilder;
+import top.youlanqiang.toolbox.base.LambdaStringBuffer;
 
 @DisplayName("AbstractLambdaStringBuilder测试类")
 public class LambdaStringTest {
 
+    private static final AbstractLambdaStringBuilder sb = new LambdaStringBuffer();
+
+    @DisplayName("Delete相关操作测试")
+    @Nested
+    class DeleteTest {
+
+        @BeforeEach
+        public void beforeEach() {
+            sb.clean();
+        }
+
+        @DisplayName("测试删除最后一个字符操作")
+        @Test
+        public void testDeleteLastChar() {
+            assertEquals("1", sb.append("1,").deleteLastChar().toString());
+        }
+    }
+
     @DisplayName("Append相关操作测试")
     @Nested
     class AppendTest {
-        private static final LambdaStringBuilder sb = new LambdaStringBuilder();
 
         @BeforeEach
         public void beforeEach() {
@@ -49,6 +67,7 @@ public class LambdaStringTest {
         public void testAppendArray() {
             assertEquals("1234", sb.append(1, 2, 3, 4).toString());
         }
+
     }
 
 }

@@ -22,7 +22,6 @@ public final class ReflectHepler {
      * @return key为属性名称 object为返回值
      */
     public static Map<String, Object> getPublicGetterMap(Object target) {
-
         var methods = filterMethods(target.getClass().getDeclaredMethods(), "get", true);
         if (methods.isEmpty()) {
             return Collections.emptyMap();

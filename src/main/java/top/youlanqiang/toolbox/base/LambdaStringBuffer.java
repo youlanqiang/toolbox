@@ -134,8 +134,8 @@ public class LambdaStringBuffer implements AbstractLambdaStringBuilder {
 
     @Override
     public AbstractLambdaStringBuilder deleteLast(int size) {
-        int lastIndex = buffer.length() - 1;
-        buffer.delete(lastIndex - size, lastIndex);
+        int lastIndex = buffer.length() - size;
+        buffer.delete(lastIndex, buffer.length());
         return this;
     }
 
@@ -195,6 +195,11 @@ public class LambdaStringBuffer implements AbstractLambdaStringBuilder {
     @Override
     public String toString() {
         return buffer.toString();
+    }
+
+    @Override
+    public CharSequence subSequence(int start, int end) {
+        return buffer.subSequence(start, end);
     }
 
 }

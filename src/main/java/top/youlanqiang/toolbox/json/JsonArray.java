@@ -139,7 +139,7 @@ public class JsonArray implements List<Object> {
 
     @Override
     public String toString() {
-        return null;
+        return JsonWriter.INSTANCE.writeToString(list);
     }
 
 }
