@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.csv;
+package top.youlanqiang.toolbox.reader;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -11,14 +11,14 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import top.youlanqiang.toolbox.base.IOHepler;
-import top.youlanqiang.toolbox.base.StringHepler;
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * CSVResource读取辅助类，在不使用时需要调用Close方法，释放流。
  * 
  * @author youlanqiang
  */
-public class CSVResource implements Closeable {
+public class CSVReader implements Closeable {
 
     private static final CSVStringColmunCover COLMUN_COVER = new CSVStringColmunCover();
 
@@ -37,7 +37,7 @@ public class CSVResource implements Closeable {
      * 
      * @param inputStream csv文件流
      */
-    public CSVResource(InputStream inputStream) {
+    public CSVReader(InputStream inputStream) {
         this(inputStream, StandardCharsets.UTF_8);
     }
 
@@ -47,7 +47,7 @@ public class CSVResource implements Closeable {
      * @param inputStream csv文件流
      * @param charset     编码字符集
      */
-    public CSVResource(InputStream inputStream, Charset charset) {
+    public CSVReader(InputStream inputStream, Charset charset) {
         this.charset = charset;
         this.reader = new BufferedReader(new InputStreamReader(inputStream, charset));
     }

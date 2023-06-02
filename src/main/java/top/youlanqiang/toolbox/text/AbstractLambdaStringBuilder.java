@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.base;
+package top.youlanqiang.toolbox.text;
 
 import java.util.Collection;
 import java.util.Map;

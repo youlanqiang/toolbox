@@ -8,9 +8,9 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import top.youlanqiang.toolbox.base.CharReader;
-import top.youlanqiang.toolbox.base.ListReader;
 import top.youlanqiang.toolbox.json.JsonTokenizer.JsonToken;
+import top.youlanqiang.toolbox.reader.ListReader;
+import top.youlanqiang.toolbox.text.CharReader;
 
 @DisplayName("JsonTokenizer测试类")
 public class JsonTokenizerTest {

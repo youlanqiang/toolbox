@@ -3,9 +3,9 @@ package top.youlanqiang.toolbox.json;
 import java.io.IOException;
 import java.io.StringReader;
 
-import top.youlanqiang.toolbox.base.CharReader;
-import top.youlanqiang.toolbox.base.ListReader;
 import top.youlanqiang.toolbox.json.JsonTokenizer.JsonToken;
+import top.youlanqiang.toolbox.reader.ListReader;
+import top.youlanqiang.toolbox.text.CharReader;
 
 /**
  * JsonTokenizer json语法分析器

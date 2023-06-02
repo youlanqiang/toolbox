@@ -23,7 +23,6 @@ public final class EqualsHepler {
         if (!equalsValue) {
             return this;
         }
-
         this.equalsValue = v1.equals(v2);
         return this;
     }

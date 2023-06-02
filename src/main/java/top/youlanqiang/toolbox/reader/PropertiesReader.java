@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.properties;
+package top.youlanqiang.toolbox.reader;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
-import top.youlanqiang.toolbox.base.StringHepler;
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * Properties文件读取类
@@ -25,7 +25,7 @@ import top.youlanqiang.toolbox.base.StringHepler;
  *         created in 2022/12/24 16:34
  * 
  */
-public class PropertiesResource {
+public class PropertiesReader {
 
     /**
      * properties对象
@@ -54,7 +54,7 @@ public class PropertiesResource {
      * @return PropertiesResource对象,UTF8编码
      * @throws IOException 读取失败报IOException异常
      */
-    public static PropertiesResource loadFromFile(File file) throws IOException {
+    public static PropertiesReader loadFromFile(File file) throws IOException {
         return loadFromPath(file.toPath());
     }
 
@@ -65,7 +65,7 @@ public class PropertiesResource {
      * @return PropertiesResource对象,UTF8编码
      * @throws IOException 读取失败报IOException异常
      */
-    public static PropertiesResource loadFromPath(Path path) throws IOException {
+    public static PropertiesReader loadFromPath(Path path) throws IOException {
         return loadFromInputStream(Files.newInputStream(path, StandardOpenOption.READ));
     }
 
@@ -76,7 +76,7 @@ public class PropertiesResource {
      * @return PropertiesResource对象,UTF8编码
      * @throws IOException 读取失败报IOException异常
      */
-    public static PropertiesResource loadFromInputStream(InputStream stream) throws IOException {
+    public static PropertiesReader loadFromInputStream(InputStream stream) throws IOException {
         return loadFromInputStream(stream, StandardCharsets.UTF_8);
     }
 
@@ -87,7 +87,7 @@ public class PropertiesResource {
      * @return PropertiesResource对象,UTF8编码
      * @throws IOException 读取失败报IOException异常
      */
-    public static PropertiesResource loadFromResource(String filePath) throws IOException {
+    public static PropertiesReader loadFromResource(String filePath) throws IOException {
         return loadFromResource(filePath, StandardCharsets.UTF_8);
     }
 
@@ -99,7 +99,7 @@ public class PropertiesResource {
      * @return PropertiesResource对象,UTF8编码
      * @throws IOException 读取失败报IOException异常
      */
-    public static PropertiesResource loadFromResource(String filePath, Charset charset) throws IOException {
+    public static PropertiesReader loadFromResource(String filePath, Charset charset) throws IOException {
         return loadFromInputStream(IOHepler.getResourceAsStream(filePath), charset);
     }
 
@@ -111,9 +111,9 @@ public class PropertiesResource {
      * @return PropertiesResource对象,UTF8编码
      * @throws IOException 读取失败报IOException异常
      */
-    public static PropertiesResource loadFromInputStream(InputStream stream, Charset charset) throws IOException {
+    public static PropertiesReader loadFromInputStream(InputStream stream, Charset charset) throws IOException {
         try {
-            return new PropertiesResource(stream, charset);
+            return new PropertiesReader(stream, charset);
         } finally {
             IOHepler.close(stream);
         }
@@ -125,7 +125,7 @@ public class PropertiesResource {
      * @param stream stream流
      * @throws IOException 读取失败报IOException异常
      */
-    public PropertiesResource(InputStream stream) throws IOException {
+    public PropertiesReader(InputStream stream) throws IOException {
         this(stream, StandardCharsets.UTF_8);
     }
 
@@ -136,7 +136,7 @@ public class PropertiesResource {
      * @param charset 编码字符集
      * @throws IOException 读取失败报IOException异常
      */
-    public PropertiesResource(InputStream stream, Charset charset) throws IOException {
+    public PropertiesReader(InputStream stream, Charset charset) throws IOException {
         this(new InputStreamReader(stream, charset));
         this.charset = charset;
     }
@@ -147,7 +147,7 @@ public class PropertiesResource {
      * @param reader reader对象
      * @throws IOException 读取失败报IOException异常
      */
-    public PropertiesResource(Reader reader) throws IOException {
+    public PropertiesReader(Reader reader) throws IOException {
         this.properties = new Properties();
         this.mode = PropertiesMode.FILE;
         properties.load(reader);
@@ -158,7 +158,7 @@ public class PropertiesResource {
      * 
      * @param map map对象不可为空
      */
-    public PropertiesResource(final Optional<Map<String, ?>> map) {
+    public PropertiesReader(final Optional<Map<String, ?>> map) {
         this.map = map.get();
         this.mode = PropertiesMode.MAP;
     }

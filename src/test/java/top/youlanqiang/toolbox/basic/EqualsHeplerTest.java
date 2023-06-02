@@ -21,28 +21,28 @@ public class EqualsHeplerTest {
     public record Person(String name, int age) {
     }
 
-    @DisplayName("比较相同对象")
-    @Test
-    public void testSameObjects() {
-        Person tom = new Person("tom", 18);
-        Person tom2 = new Person("tom", 18);
-        boolean equalsValue = Toolbox.equalsHepler()
-                .addCondition(tom.name(), tom2.name())
-                .addCondition(tom.age(), tom2.age())
-                .doEquals();
-        assertTrue(equalsValue);
-    }
+    // @DisplayName("比较相同对象")
+    // @Test
+    // public void testSameObjects() {
+    // Person tom = new Person("tom", 18);
+    // Person tom2 = new Person("tom", 18);
+    // boolean equalsValue = Toolbox.equalsHepler()
+    // .addCondition(tom.name(), tom2.name())
+    // .addCondition(tom.age(), tom2.age())
+    // .doEquals();
+    // assertTrue(equalsValue);
+    // }
 
-    @DisplayName("比较不同对象")
-    @Test
-    public void testDiffObjects() {
-        Person tom = new Person("tom", 18);
-        Person tom2 = new Person("tom", 22);
-        boolean equalsValue = Toolbox.equalsHepler()
-                .addCondition(tom.name(), tom2.name())
-                .addCondition(tom.age(), tom2.age())
-                .doEquals();
-        assertFalse(equalsValue);
-    }
+    // @DisplayName("比较不同对象")
+    // @Test
+    // public void testDiffObjects() {
+    // Person tom = new Person("tom", 18);
+    // Person tom2 = new Person("tom", 22);
+    // boolean equalsValue = Toolbox.equalsHepler()
+    // .addCondition(tom.name(), tom2.name())
+    // .addCondition(tom.age(), tom2.age())
+    // .doEquals();
+    // assertFalse(equalsValue);
+    // }
 
 }

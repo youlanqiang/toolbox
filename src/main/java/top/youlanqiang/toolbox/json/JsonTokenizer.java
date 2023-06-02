@@ -2,9 +2,9 @@ package top.youlanqiang.toolbox.json;
 
 import java.io.IOException;
 
-import top.youlanqiang.toolbox.base.CharReader;
-import top.youlanqiang.toolbox.base.ListReader;
-import top.youlanqiang.toolbox.base.StringHepler;
+import top.youlanqiang.toolbox.reader.ListReader;
+import top.youlanqiang.toolbox.text.CharReader;
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * Json词法分析，这个类是线程安全的

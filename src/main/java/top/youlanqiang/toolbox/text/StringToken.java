@@ -1,7 +1,5 @@
 package top.youlanqiang.toolbox.text;
 
-import top.youlanqiang.toolbox.base.StringHepler;
-
 /**
  * 字符串Token
  * 

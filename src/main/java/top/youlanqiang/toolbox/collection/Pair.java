@@ -3,6 +3,8 @@ package top.youlanqiang.toolbox.collection;
 import java.util.Map.Entry;
 
 import top.youlanqiang.toolbox.Toolbox;
+import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * 二元对象组
@@ -105,7 +107,7 @@ public abstract class Pair<L, R> implements Entry<L, R> {
 
     @Override
     public String toString() {
-        return Toolbox.toString(this)
+        return StringHepler.build(this)
                 .put("left", getLeft())
                 .put("right", getRight())
                 .toString();

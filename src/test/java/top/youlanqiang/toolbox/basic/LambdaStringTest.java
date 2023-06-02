@@ -5,12 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import top.youlanqiang.toolbox.text.AbstractLambdaStringBuilder;
+import top.youlanqiang.toolbox.text.LambdaStringBuffer;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
-
-import top.youlanqiang.toolbox.base.AbstractLambdaStringBuilder;
-import top.youlanqiang.toolbox.base.LambdaStringBuffer;
 
 @DisplayName("AbstractLambdaStringBuilder测试类")
 public class LambdaStringTest {

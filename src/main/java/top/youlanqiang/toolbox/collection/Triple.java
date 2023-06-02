@@ -1,6 +1,7 @@
 package top.youlanqiang.toolbox.collection;
 
 import top.youlanqiang.toolbox.Toolbox;
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * 
@@ -89,7 +90,7 @@ public abstract class Triple<L, M, R> {
 
     @Override
     public String toString() {
-        return Toolbox.toString(this)
+        return StringHepler.build(this)
                 .put("left", getLeft())
                 .put("middle", getMiddle())
                 .put("right", getRight())

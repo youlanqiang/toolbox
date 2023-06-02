@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.base;
+package top.youlanqiang.toolbox.text;
 
 import java.util.Arrays;
 import java.util.Collection;

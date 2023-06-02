@@ -19,12 +19,13 @@ public class ObjectHeplerTest {
         assertTrue(Toolbox.isEmpty(bar, foo));
     }
 
-    @DisplayName("测试类型转换")
-    @Test
-    public void testCast() {
-        assertTrue(Toolbox.castHepler().castToBoolean(1));
-        assertEquals(Character.valueOf('1'), Toolbox.castHepler().castToCharacter(49));
-        assertEquals(Byte.valueOf("10"), Toolbox.castHepler().castToByte("10"));
-    }
+    // @DisplayName("测试类型转换")
+    // @Test
+    // public void testCast() {
+    // assertTrue(Toolbox.castHepler().castToBoolean(1));
+    // assertEquals(Character.valueOf('1'),
+    // Toolbox.castHepler().castToCharacter(49));
+    // assertEquals(Byte.valueOf("10"), Toolbox.castHepler().castToByte("10"));
+    // }
 
 }

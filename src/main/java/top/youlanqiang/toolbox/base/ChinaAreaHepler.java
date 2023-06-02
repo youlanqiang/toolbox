@@ -3,7 +3,8 @@ package top.youlanqiang.toolbox.base;
 import java.util.HashMap;
 import java.util.Map;
 
-import top.youlanqiang.toolbox.csv.CSVResource;
+import top.youlanqiang.toolbox.reader.CSVReader;
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * 中国区域代码辅助类
@@ -16,7 +17,7 @@ public class ChinaAreaHepler {
 
     static {
         // 读取china_area_code.csv文件
-        try (var csvResource = new CSVResource(IOHepler.getResourceAsStream("china_area_code.csv"))) {
+        try (var csvResource = new CSVReader(IOHepler.getResourceAsStream("china_area_code.csv"))) {
             var areaCodes = csvResource.cover((array) -> {
                 return new ChinaAreaCode(
                         Integer.parseInt(array[0]),

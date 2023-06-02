@@ -1,7 +1,9 @@
-package top.youlanqiang.toolbox.base;
+package top.youlanqiang.toolbox.reader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import top.youlanqiang.toolbox.text.StringHepler;
 
 /**
  * 集合Reader类,该类不是线程安全的,在多线程环境中不要使用.

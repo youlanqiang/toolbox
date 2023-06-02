@@ -1,4 +1,4 @@
-package top.youlanqiang.toolbox.base;
+package top.youlanqiang.toolbox.text;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -8,8 +8,6 @@ import java.util.Objects;
 import java.util.Map.Entry;
 
 import top.youlanqiang.toolbox.collection.Pair;
-import top.youlanqiang.toolbox.text.GenericTokenParser;
-import top.youlanqiang.toolbox.text.TokenHandlers;
 
 /**
  * 

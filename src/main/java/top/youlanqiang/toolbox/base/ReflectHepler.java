@@ -8,8 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import top.youlanqiang.toolbox.text.StringHepler;
+
 /**
  * 反射对象帮助类
+ * TODO 待重新实现
  * 
  * @author youlanqiang
  */
@@ -29,7 +32,6 @@ public final class ReflectHepler {
         var result = new HashMap<String, Object>(methods.size());
 
         methods.forEach(method -> {
-
             String name = resolveFieldNameByMethod(method);
             try {
                 result.put(name, method.invoke(target, null));

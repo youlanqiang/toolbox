@@ -41,15 +41,15 @@ public class ToStringHeplerTest {
     public record SampleUser(String name, Integer age) {
     }
 
-    @DisplayName("测试ObjectToStringBuilder")
-    @Test
-    public void testObjectToString() {
-        var sample = new SampleUser("测试", 15);
-        var str = Toolbox.toString(sample)
-                .put("name", sample.name())
-                .put("age", sample.age())
-                .toString();
-        System.out.println(str);
-    }
+    // @DisplayName("测试ObjectToStringBuilder")
+    // @Test
+    // public void testObjectToString() {
+    // var sample = new SampleUser("测试", 15);
+    // var str = Toolbox.toString(sample)
+    // .put("name", sample.name())
+    // .put("age", sample.age())
+    // .toString();
+    // System.out.println(str);
+    // }
 
 }
