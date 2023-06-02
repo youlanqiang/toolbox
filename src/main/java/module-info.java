@@ -12,7 +12,7 @@ module toolbox {
     exports top.youlanqiang.toolbox.base;
     exports top.youlanqiang.toolbox.collection;
     exports top.youlanqiang.toolbox.concurrent;
-    exports top.youlanqiang.toolbox.properties;
     exports top.youlanqiang.toolbox.json;
+    exports top.youlanqiang.toolbox.reader;
     exports top.youlanqiang.toolbox.text;
 }
