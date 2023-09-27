@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import top.youlanqiang.toolbox.base.IOHepler;
 import top.youlanqiang.toolbox.base.ObjectHepler;
+import top.youlanqiang.toolbox.io.IOHepler;
 import top.youlanqiang.toolbox.text.StringHepler;
 
 /**

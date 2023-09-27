@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import top.youlanqiang.toolbox.base.IOHepler;
+import top.youlanqiang.toolbox.io.IOHepler;
 
 @DisplayName("IOHepler测试类")
 public class IOHeplerTest {
