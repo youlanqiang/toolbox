@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  *         created in 2023/01/11 20:20
  * 
  */
-public final class IOHepler {
+public final class IOUtils {
 
     /**
      * 执行flush和close操作，并忽略掉可能发生的异常
@@ -67,7 +67,7 @@ public final class IOHepler {
      */
     public static InputStream getResourceAsStream(String filePath) {
 
-        return IOHepler.class.getClassLoader().getResourceAsStream(filePath);
+        return IOUtils.class.getClassLoader().getResourceAsStream(filePath);
     }
 
     /**
