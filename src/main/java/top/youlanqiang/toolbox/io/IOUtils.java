@@ -18,6 +18,21 @@ import java.nio.charset.StandardCharsets;
 public final class IOUtils {
 
     /**
+     * 默认缓冲区大小 8kb
+     */
+    public static final int DEFAULT_BUFFER_SIZE = 8192;
+
+    /**
+     * 流结束标识
+     */
+    public static final int EOF = -1;
+
+    /**
+     * 换行字符.
+     */
+    public static final int LF = '\n';
+
+    /**
      * 执行flush和close操作，并忽略掉可能发生的异常
      * 
      * @param writer 实现了Writer接口的对象
@@ -198,4 +213,20 @@ public final class IOUtils {
         return new String(in.readAllBytes(), charset);
     }
 
+    /**
+     * 读取字节流，但是不会对它们进行任何操作，并忽略它们。
+     * 不会主动关闭流
+     * 
+     * @param in 字节流
+     * @return 消费掉的字节流
+     */
+    public static long consume(InputStream in) throws IOException {
+        long count = 0;
+        int n;
+        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        while (EOF != (n = in.read(buffer))) {
+            count += n;
+        }
+        return count;
+    }
 }

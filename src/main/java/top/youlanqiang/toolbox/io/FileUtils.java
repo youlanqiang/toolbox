@@ -1,9 +1,14 @@
 package top.youlanqiang.toolbox.io;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
+import java.nio.file.Files;
 import java.util.Objects;
+import java.util.zip.CRC32;
+import java.util.zip.CheckedInputStream;
+import java.util.zip.Checksum;
 
 /**
  * File对象方法，这个工具类是对{@link java.nio.file.Files}和{@link java.nio.file.Paths}的拓展
@@ -152,7 +157,48 @@ public class FileUtils {
         }
     }
 
-    private FileUtils() {
+    /**
+     * 获取文件的校验和
+     * 
+     * @param file     文件
+     * @param checksum 指定校验和算法
+     * @return
+     * @throws IOException
+     */
+    public static Checksum checksum(final File file, final Checksum checksum) throws IOException {
+        requireExists(file, "file");
+        if (!file.isFile()) {
+            throw new IllegalArgumentException("the file param is not a file!");
+        }
+
+        Objects.requireNonNull(checksum, "checksum");
+        try (InputStream inputStream = new CheckedInputStream(Files.newInputStream(file.toPath()), checksum)) {
+            IOUtils.consume(inputStream);
+        }
+        return checksum;
+    }
+
+    /**
+     * 比较2个文件内容是否一致，通过checksum进行比对
+     * 
+     * @param file1 文件1
+     * @param file2 文件2
+     * @return 文件检验和一致则返回 ture
+     */
+    public static boolean equals(File file1, File file2) throws IOException {
+        Objects.requireNonNull(file1);
+        Objects.requireNonNull(file2);
+
+        if (file1 == file2 || file1.equals(file2)) {
+            return true;
+        }
+
+        if (file1.length() != file2.length()) {
+            return false;
+        }
+        Checksum checksum1 = checksum(file1, new CRC32());
+        Checksum checksum2 = checksum(file2, new CRC32());
+        return checksum1.getValue() == checksum2.getValue();
     }
 
 }
