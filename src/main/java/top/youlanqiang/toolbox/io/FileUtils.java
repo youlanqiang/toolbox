@@ -143,6 +143,10 @@ public class FileUtils {
         return dotIndex == -1 ? fileName : fileName.substring(0, dotIndex);
     }
 
+    public static void requireExists(String filePath, String message) {
+
+    }
+
     /**
      * 判断文件是否存在，不存在则直接抛出异常
      * 
@@ -153,6 +157,34 @@ public class FileUtils {
     public static void requireExists(File file, String message) {
         Objects.requireNonNull(file, message);
         if (!file.exists()) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    /**
+     * 判断文件是否存在，不存在且不是一个文件直接抛出异常
+     * 
+     * @param file    文件
+     * @param message 异常信息
+     * @exception IlleaglArgumentException 文件不存在异常
+     */
+    public static void requireFileExists(File file, String message) {
+        requireExists(file, message);
+        if (!file.isFile()) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    /**
+     * 判断文件夹是否存在，不存在且不是一个文件夹直接抛出异常
+     * 
+     * @param file    文件
+     * @param message 异常信息
+     * @exception IlleaglArgumentException 文件不存在异常
+     */
+    public static void requireDirectoryExists(File file, String message) {
+        requireExists(file, message);
+        if (!file.isDirectory()) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -185,7 +217,7 @@ public class FileUtils {
      * @param file2 文件2
      * @return 文件检验和一致则返回 ture
      */
-    public static boolean equals(File file1, File file2) throws IOException {
+    public static boolean contentEquals(File file1, File file2) throws IOException {
         Objects.requireNonNull(file1);
         Objects.requireNonNull(file2);
 

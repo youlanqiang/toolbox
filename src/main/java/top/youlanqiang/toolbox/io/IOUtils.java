@@ -68,6 +68,9 @@ public final class IOUtils {
      */
     public static void close(Closeable closeable) {
         try {
+            if (closeable == null) {
+                return;
+            }
             closeable.close();
         } catch (IOException e) {
             // ignore exception
