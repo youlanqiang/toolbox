@@ -12,7 +12,7 @@ public final class StringUtils {
      * @return true of false
      */
     public static boolean hasLength(CharSequence str) {
-        return str != null && str.length() > 0;
+        return str != null && str.length() != 0;
     }
 
     /**
@@ -60,7 +60,25 @@ public final class StringUtils {
      * @return 是数字，则返回true
      */
     public static boolean isDigit(Character ch) {
-        return 0 <= ch && ch <= 9;
+        return 48 <= ch && ch <= 57;
+    }
+
+    /**
+     * 判断字符串是否是数字
+     * 
+     * @param str 字符串
+     * @return 如果是数字，则返回true
+     */
+    public static boolean isNumber(String str) {
+        if (!hasLength(str)) {
+            return false;
+        }
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
@@ -72,7 +90,7 @@ public final class StringUtils {
      */
     public static String format(String pattern, Object... args) {
         if (isEmpty(pattern) || args == null || args.length == 0) {
-            return pattern.toString();
+            return pattern;
         }
         final int strPatternLength = pattern.length();
         final int placeHolderLength = 2;
