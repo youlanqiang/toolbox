@@ -1,10 +1,15 @@
 package top.youlanqiang.toolbox.io;
 
+import top.youlanqiang.toolbox.base.CollectionUtils;
+import top.youlanqiang.toolbox.base.StringUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
@@ -45,6 +50,35 @@ public class FileUtils {
     public static final BigInteger ONE_TB_BI = BigInteger.valueOf(ONE_TB);
 
     public static final String TB = "TB";
+
+    /**
+     * 一些常见的视频文件后缀名
+     */
+    public static final List<String> VIDEO_FILE_EXT = Arrays.asList("mp4", "m4v", "mov", "avi", "flv", "mpg", "mpeg",
+            "rmvb", "wmv", "asf", "dat", "asx", "wvx", "mpe", "mpa");
+
+    /**
+     * 一些常见的音频文件后缀名
+     */
+    public static final List<String> AUDIO_FILE_EXT = Arrays.asList("mp3", "wma", "wav", "ape", "flac", "ogg", "aac");
+
+    /**
+     * 一些常见的图片文件后缀名
+     */
+    public static final List<String> IMG_FILE_EXT = Arrays.asList("bmp", "jpeg", "jpg", "png", "tiff", "gif", "pcx", "tga",
+            "exif", "fpx", "svg", "psd", "ico", "webp");
+
+    /**
+     * 一些常见的文档文件后缀名
+     */
+    public static final List<String> DOC_FILE_EXT = Arrays.asList("txt","xml", "md", "xlsx", "xls", "doc", "docx", "ppt",
+            "pptx", "pdf", "odt");
+
+    /**
+     * 一些常见的压缩文件后缀名
+     */
+    public static final List<String> COMPRESSED_FILE_EXT = Arrays.asList("zip", "rar", "7z", "jar", "gz", "tar",  "ar",
+            "bz", "car", "dar", "cpgz", "f", "ha");
 
     /**
      * @see #byteCountToDisplaySize(BigInteger)
@@ -143,16 +177,114 @@ public class FileUtils {
         return dotIndex == -1 ? fileName : fileName.substring(0, dotIndex);
     }
 
-    public static void requireExists(String filePath, String message) {
-
+    /**
+     * 判断文件名词的后缀是否是常用的视频文件
+     * @param fileName 文件名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isVideo(String fileName){
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, VIDEO_FILE_EXT);
     }
+
+    /**
+     * 判断文件名词的后缀是否是常用的视频文件
+     * @param fileName 文件名
+     * @param ext 额外进行判断的后缀名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isVideo(String fileName, String... ext){
+        if(CollectionUtils.isEmpty(ext)){
+            return isVideo(fileName);
+        }
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, VIDEO_FILE_EXT) ||
+                StringUtils.containIgnoreCase(fileExtension, ext);
+    }
+
+    /**
+     * 判断文件名词的后缀是否是常用的图片文件
+     * @param fileName 文件名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isImg(String fileName){
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, IMG_FILE_EXT);
+    }
+
+
+    /**
+     * 判断文件名词的后缀是否是常用的图片文件
+     * @param fileName 文件名
+     * @param ext 额外进行判断的后缀名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isImg(String fileName, String... ext){
+        if(CollectionUtils.isEmpty(ext)){
+            return isVideo(fileName);
+        }
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, IMG_FILE_EXT) ||
+                StringUtils.containIgnoreCase(fileExtension, ext);
+    }
+
+    /**
+     * 判断文件名词的后缀是否是常用的音频文件
+     * @param fileName 文件名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isAudio(String fileName){
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, AUDIO_FILE_EXT);
+    }
+
+    /**
+     * 判断文件名词的后缀是否是常用的音频文件
+     * @param fileName 文件名
+     * @param ext 额外进行判断的后缀名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isAudio(String fileName, String... ext){
+        if(CollectionUtils.isEmpty(ext)){
+            return isVideo(fileName);
+        }
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, AUDIO_FILE_EXT) ||
+                StringUtils.containIgnoreCase(fileExtension, ext);
+    }
+
+    /**
+     * 判断文件名词的后缀是否是常用的压缩文件
+     * @param fileName 文件名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isCompressed(String fileName){
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, COMPRESSED_FILE_EXT);
+    }
+
+    /**
+     * 判断文件名词的后缀是否是常用的压缩文件
+     * @param fileName 文件名
+     * @param ext 额外进行判断的后缀名
+     * @return 忽略大小写，匹配其中一项则返回true
+     */
+    public static boolean isCompressed(String fileName, String... ext){
+        if(CollectionUtils.isEmpty(ext)){
+            return isVideo(fileName);
+        }
+        String fileExtension = getFileExtension(fileName);
+        return StringUtils.containIgnoreCase(fileExtension, COMPRESSED_FILE_EXT) ||
+                StringUtils.containIgnoreCase(fileExtension, ext);
+    }
+
 
     /**
      * 判断文件是否存在，不存在则直接抛出异常
      * 
      * @param file    文件
      * @param message 异常信息
-     * @exception IlleaglArgumentException 文件不存在异常
+     * @exception IllegalArgumentException 文件不存在异常
      */
     public static void requireExists(File file, String message) {
         Objects.requireNonNull(file, message);
@@ -166,7 +298,7 @@ public class FileUtils {
      * 
      * @param file    文件
      * @param message 异常信息
-     * @exception IlleaglArgumentException 文件不存在异常
+     * @exception IllegalArgumentException 文件不存在异常
      */
     public static void requireFileExists(File file, String message) {
         requireExists(file, message);
@@ -180,7 +312,7 @@ public class FileUtils {
      * 
      * @param file    文件
      * @param message 异常信息
-     * @exception IlleaglArgumentException 文件不存在异常
+     * @exception IllegalArgumentException 文件不存在异常
      */
     public static void requireDirectoryExists(File file, String message) {
         requireExists(file, message);
