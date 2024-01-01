@@ -16,7 +16,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断str字符串是否存在字符
+     * 判断str字符串是否存在字符 
      * 
      * @param str 目标字符串
      * @return true of false
