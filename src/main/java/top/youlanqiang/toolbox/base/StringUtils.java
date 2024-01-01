@@ -1,9 +1,43 @@
 package top.youlanqiang.toolbox.base;
 
+import java.util.Collection;
+
 /**
  * 字符串相关工具方法
  */
 public final class StringUtils {
+
+    /**
+     * 判断字符串是否存在list集合中
+     * 
+     * @param str  目标字符串
+     * @param list 集合
+     * @return 忽略大小写进行比较
+     */
+    public static boolean containIgnoreCase(String str, Collection<String> list) {
+        for (String item : list) {
+            if (item.equalsIgnoreCase(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断字符串是否存在list集合中
+     * 
+     * @param str   目标字符串
+     * @param array 数组
+     * @return 忽略大小写进行比较
+     */
+    public static boolean containIgnoreCase(String str, String... array) {
+        for (String item : array) {
+            if (item.equalsIgnoreCase(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * 判断str是否存在长度
@@ -12,17 +46,17 @@ public final class StringUtils {
      * @return true of false
      */
     public static boolean hasLength(CharSequence str) {
-        return str != null && str.length() != 0;
+        return str != null && !str.isEmpty();
     }
 
     /**
-     * 判断str字符串是否存在字符 
+     * 判断str字符串是否存在字符
      * 
      * @param str 目标字符串
      * @return true of false
      */
     public static boolean hasText(CharSequence str) {
-        if (str != null && str.length() > 0) {
+        if (str != null && !str.isEmpty()) {
             for (int i = 0; i < str.length(); i++) {
                 // 存在一个非空字符串则返回true
                 if (!isWhiteSpace(str.charAt(i))) {
@@ -85,7 +119,7 @@ public final class StringUtils {
      * 格式化字符串内容
      * 
      * @param pattern 字符串模版
-     * @param arg     参数列表
+     * @param args    参数列表
      * @return 格式化后的字符串
      */
     public static String format(String pattern, Object... args) {
@@ -142,7 +176,7 @@ public final class StringUtils {
      * 直接打印格式化后的字符串
      * 
      * @param pattern 字符串模版
-     * @param arg     参数列表
+     * @param args    参数列表
      */
     public static void println(String pattern, Object... args) {
         System.out.println(format(pattern, args));
