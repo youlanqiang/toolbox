@@ -15,6 +15,9 @@ public final class StringUtils {
      * @return 忽略大小写进行比较
      */
     public static boolean containIgnoreCase(String str, Collection<String> list) {
+        if (CollectionUtils.isEmpty(list)) {
+            return false;
+        }
         for (String item : list) {
             if (item.equalsIgnoreCase(str)) {
                 return true;
@@ -31,6 +34,10 @@ public final class StringUtils {
      * @return 忽略大小写进行比较
      */
     public static boolean containIgnoreCase(String str, String... array) {
+        if (CollectionUtils.isEmpty(array)) {
+            return false;
+        }
+
         for (String item : array) {
             if (item.equalsIgnoreCase(str)) {
                 return true;
