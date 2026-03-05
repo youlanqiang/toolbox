@@ -16,24 +16,25 @@ repositories {
 }
 
 dependencies { 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.1'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.1'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '6.0.3'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '6.0.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-test {
+tasks.named('test', Test) {
     useJUnitPlatform()
 }
 
-tasks.withType(JavaCompile) {  
-    options.encoding = "UTF-8"  
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
 }
 
-task sourcesJar(type: Jar){
+tasks.register('sourcesJar', Jar) {
     from sourceSets.main.allJava
     archiveClassifier = 'sources'
 }
 
-task javadocJar(type: Jar){
+tasks.register('javadocJar', Jar) {
     from javadoc
     archiveClassifier = 'javadoc'
 }
@@ -104,6 +105,6 @@ javadoc {
 }
 
 compileJava {
-    options.release = 17
+    options.release = 21
 }
 
